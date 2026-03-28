@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-28T02:21:23.844Z",
+  "generatedAt": "2026-03-28T02:38:07.757Z",
   "source": {
     "mode": "csv",
     "note": "Built from data/titles.csv, AniList metadata, and ISBN resolution."
@@ -119,7 +119,7 @@
         "Slice of Life",
         "Supernatural"
       ],
-      "isbn13": "9781975377847",
+      "isbn13": "9781975377830",
       "matchConfidence": "high"
     },
     {
@@ -266,7 +266,7 @@
         "Fantasy",
         "Slice of Life"
       ],
-      "isbn13": "9781685790615",
+      "isbn13": "9781648278860",
       "matchConfidence": "high"
     },
     {
