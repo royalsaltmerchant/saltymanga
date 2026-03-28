@@ -51,10 +51,16 @@ Or in one go:
 npm run refresh:all
 ```
 
-For a production-ready local build that matches Netlify:
+To refresh the catalog locally and then build the site:
 
 ```bash
 npm run build:deploy
+```
+
+Netlify deploys the committed `data/catalog.json` and runs:
+
+```bash
+npm run build
 ```
 
 ## CSV Input Notes
@@ -72,8 +78,8 @@ Yotsuba&!
 Optional columns supported by the builder:
 
 ```csv
-title,source_url,caption,notes,isbn13,cover_image
-Delicious in Dungeon,https://example.com/post,Still one of the easiest fantasy recs to hand someone.,,,https://example.com/cover.jpg
+title,source_url,caption,notes,isbn13,bookshop_url,cover_image
+Delicious in Dungeon,https://example.com/post,Still one of the easiest fantasy recs to hand someone.,,,https://bookshop.org/a/123/9780123456789,https://example.com/cover.jpg
 ```
 
 Replace the CSV rows with your real titles, run the refresh flow, and the site will rebuild from that list.
@@ -92,7 +98,7 @@ That means the site only needs a valid ISBN-13 per manga entry rather than a han
 
 This repo is configured for Netlify in `netlify.toml`.
 
-- Build command: `npm run build:deploy`
+- Build command: `npm run build`
 - Publish directory: `dist`
 - Node version: `22`
 
@@ -102,4 +108,4 @@ Set these environment variables in Netlify before the first production deploy:
 - `GOOGLE_BOOKS_API_KEY`
 - `SITE_URL`
 
-`build:deploy` rebuilds `data/catalog.json` from `data/titles.csv` during each deploy, so production stays in sync with the CSV instead of relying on a previously committed catalog file.
+Production relies on the committed `data/catalog.json`. When you change `data/titles.csv`, run `npm run build:deploy` locally before shipping so Netlify can deploy the refreshed catalog without making network metadata calls during the build.

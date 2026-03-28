@@ -279,6 +279,53 @@ function normalizeStatus(status) {
   return cleanText(status).replace(/_/g, ' ').toUpperCase() || null;
 }
 
+function readExistingCatalog() {
+  const catalogPath = new URL('../data/catalog.json', import.meta.url);
+  if (!fs.existsSync(catalogPath)) {
+    return [];
+  }
+
+  try {
+    const parsed = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
+    return Array.isArray(parsed?.items) ? parsed.items : [];
+  } catch (error) {
+    console.warn(`Existing catalog cache skipped: ${error instanceof Error ? error.message : error}`);
+    return [];
+  }
+}
+
+function indexCatalogItems(items) {
+  const index = new Map();
+
+  for (const item of items) {
+    for (const candidate of [item?.lookupTitle, item?.title, item?.id]) {
+      const normalized = normalizeTitle(candidate);
+      if (normalized && !index.has(normalized)) {
+        index.set(normalized, item);
+      }
+    }
+  }
+
+  return index;
+}
+
+function toCatalogAnilist(media) {
+  if (!media) {
+    return null;
+  }
+
+  return {
+    id: media.id,
+    url: cleanText(media.siteUrl) || null,
+    score: Number.isFinite(media.averageScore) ? media.averageScore : null,
+    status: normalizeStatus(media.status),
+    format: cleanText(media.format) || null,
+    volumes: Number.isFinite(media.volumes) ? media.volumes : null,
+    chapters: Number.isFinite(media.chapters) ? media.chapters : null,
+    coverImage: cleanText(media.coverImage?.extraLarge) || cleanText(media.coverImage?.large) || null
+  };
+}
+
 function parseCsv(source) {
   const lines = String(source ?? '')
     .replace(/\r/g, '')
@@ -333,6 +380,7 @@ async function main() {
   const csvPath = new URL('../data/titles.csv', import.meta.url);
   const rowsSource = fs.existsSync(csvPath) ? fs.readFileSync(csvPath, 'utf8') : '';
   const rows = parseCsv(rowsSource);
+  const existingCatalogIndex = indexCatalogItems(readExistingCatalog());
 
   const items = [];
   for (const row of rows) {
@@ -341,16 +389,22 @@ async function main() {
       continue;
     }
 
+    const fallbackItem = existingCatalogIndex.get(normalizeTitle(title)) ?? null;
     let anilist = null;
     if (title) {
-      anilist = await resolveAniListMatch(title);
+      try {
+        anilist = await resolveAniListMatch(title);
+      } catch (error) {
+        console.warn(`AniList lookup skipped for "${title}": ${error instanceof Error ? error.message : error}`);
+      }
       await sleep(350);
     }
 
     const manualIsbn13 = cleanText(row.isbn13) || extractBookshopIsbn13(row.bookshop_url);
-    const isbn13 = manualIsbn13 || (title ? await resolveIsbn13(title) : null);
+    const isbn13 = manualIsbn13 || (title ? await resolveIsbn13(title) : null) || fallbackItem?.isbn13 || null;
 
-    const displayTitle = pickDisplayTitle(anilist, title);
+    const displayTitle = pickDisplayTitle(anilist, cleanText(fallbackItem?.title) || title);
+    const catalogAnilist = toCatalogAnilist(anilist) || fallbackItem?.anilist || null;
 
     items.push({
       id: normalizeTitle(displayTitle),
@@ -360,28 +414,32 @@ async function main() {
         cleanText(stripHtml(anilist?.description)) ||
         cleanText(row.notes) ||
         cleanText(row.caption) ||
+        cleanText(fallbackItem?.description) ||
         `${displayTitle} matched from the source CSV.`,
       source: {
-        caption: cleanText(row.caption) || null,
-        url: cleanText(row.source_url) || null,
-        imageUrl: cleanText(row.cover_image) || cleanText(anilist?.coverImage?.extraLarge) || cleanText(anilist?.coverImage?.large) || null,
-        tags: parseHashtags(row.caption)
+        caption: cleanText(row.caption) || cleanText(fallbackItem?.source?.caption) || null,
+        url: cleanText(row.source_url) || cleanText(fallbackItem?.source?.url) || null,
+        imageUrl:
+          cleanText(row.cover_image) ||
+          cleanText(anilist?.coverImage?.extraLarge) ||
+          cleanText(anilist?.coverImage?.large) ||
+          cleanText(fallbackItem?.source?.imageUrl) ||
+          cleanText(fallbackItem?.anilist?.coverImage) ||
+          null,
+        tags: parseHashtags(row.caption).length > 0
+          ? parseHashtags(row.caption)
+          : Array.isArray(fallbackItem?.source?.tags)
+            ? fallbackItem.source.tags
+            : []
       },
-      anilist: anilist
-        ? {
-            id: anilist.id,
-            url: cleanText(anilist.siteUrl) || null,
-            score: Number.isFinite(anilist.averageScore) ? anilist.averageScore : null,
-            status: normalizeStatus(anilist.status),
-            format: cleanText(anilist.format) || null,
-            volumes: Number.isFinite(anilist.volumes) ? anilist.volumes : null,
-            chapters: Number.isFinite(anilist.chapters) ? anilist.chapters : null,
-            coverImage: cleanText(anilist.coverImage?.extraLarge) || cleanText(anilist.coverImage?.large) || null
-          }
-        : null,
-      genres: Array.isArray(anilist?.genres) ? anilist.genres.filter(Boolean).slice(0, 4) : [],
-      isbn13: isbn13 || null,
-      matchConfidence: anilist ? 'high' : 'low'
+      anilist: catalogAnilist,
+      genres: Array.isArray(anilist?.genres)
+        ? anilist.genres.filter(Boolean).slice(0, 4)
+        : Array.isArray(fallbackItem?.genres)
+          ? fallbackItem.genres
+          : [],
+      isbn13,
+      matchConfidence: anilist ? 'high' : cleanText(fallbackItem?.matchConfidence) || 'low'
     });
 
     await sleep(200);
@@ -391,7 +449,7 @@ async function main() {
     generatedAt: new Date().toISOString(),
     source: {
       mode: 'csv',
-      note: 'Built from data/titles.csv, AniList metadata, and ISBN resolution.'
+      note: 'Built from data/titles.csv with AniList/ISBN resolution and fallback to the existing catalog when lookups fail.'
     },
     items
   });

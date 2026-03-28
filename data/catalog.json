@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-03-28T19:34:45Z",
+  "generatedAt": "2026-03-28T19:46:58.530Z",
   "source": {
     "mode": "csv",
-    "note": "Built from data/titles.csv, AniList metadata, and ISBN resolution."
+    "note": "Built from data/titles.csv with AniList/ISBN resolution and fallback to the existing catalog when lookups fail."
   },
   "items": [
     {
