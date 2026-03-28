@@ -14,15 +14,25 @@ initEnv();
 const anilistEndpoint = 'https://graphql.anilist.co';
 const googleBooksApiKey = cleanText(process.env.GOOGLE_BOOKS_API_KEY);
 
-function buildBookSearchQuery(title) {
-  const query = new URL('https://www.googleapis.com/books/v1/volumes');
-  query.searchParams.set('q', `intitle:${title}`);
-  query.searchParams.set('printType', 'books');
-  query.searchParams.set('maxResults', '5');
-  if (googleBooksApiKey) {
-    query.searchParams.set('key', googleBooksApiKey);
-  }
-  return query;
+function buildBookSearchQueries(title) {
+  const searchTerms = [
+    `"${title}" "volume 1" manga`,
+    `"${title}" "vol 1" manga`,
+    `"${title}" 1 manga`,
+    `"${title}" manga`
+  ];
+
+  return searchTerms.map((searchTerm) => {
+    const query = new URL('https://www.googleapis.com/books/v1/volumes');
+    query.searchParams.set('q', searchTerm);
+    query.searchParams.set('printType', 'books');
+    query.searchParams.set('orderBy', 'relevance');
+    query.searchParams.set('maxResults', '8');
+    if (googleBooksApiKey) {
+      query.searchParams.set('key', googleBooksApiKey);
+    }
+    return query;
+  });
 }
 
 async function fetchJson(url, options = {}, attempt = 0) {
@@ -146,44 +156,119 @@ function extractIsbn13(volumeInfo) {
   return digits.length === 13 ? digits : null;
 }
 
+function extractBookshopIsbn13(value) {
+  const source = cleanText(value);
+  const match = source.match(/\/a\/[^/?#]+\/(\d{13})(?:[/?#]|$)/i) ?? source.match(/\b(\d{13})\b/);
+  return match?.[1] ?? null;
+}
+
+function normalizeSeriesTitle(value) {
+  return normalizeTitle(value)
+    .replace(/\b(volume|vol|book|part|manga)\b/g, ' ')
+    .replace(/\b(omnibus|deluxe|collector|edition|complete|box|set)\b/g, ' ')
+    .replace(/\b\d+\b/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function extractVolumeNumber(value) {
+  const source = String(value ?? '');
+  const patterns = [
+    /\b(?:vol(?:ume)?|book|part)\.?\s*(\d{1,3})\b/i,
+    /\b(\d{1,3})\b(?=\s*(?:$|[:\-]))/
+  ];
+
+  for (const pattern of patterns) {
+    const match = source.match(pattern);
+    if (match) {
+      const parsed = Number.parseInt(match[1], 10);
+      if (Number.isFinite(parsed)) {
+        return parsed;
+      }
+    }
+  }
+
+  return null;
+}
+
 function scoreGoogleBook(searchTerm, item) {
-  const title = normalizeTitle(item?.volumeInfo?.title);
-  const search = normalizeTitle(searchTerm);
-  if (!title || !search) {
+  const volumeInfo = item?.volumeInfo ?? {};
+  const rawTitle = cleanText(volumeInfo.title);
+  const rawSubtitle = cleanText(volumeInfo.subtitle);
+  const combinedTitle = `${rawTitle} ${rawSubtitle}`.trim();
+  const seriesTitle = normalizeSeriesTitle(combinedTitle || rawTitle);
+  const search = normalizeSeriesTitle(searchTerm);
+  if (!seriesTitle || !search) {
     return -1;
   }
 
-  if (title === search) {
-    return 10;
+  let score = 0;
+
+  if (seriesTitle === search) {
+    score += 10;
+  } else if (seriesTitle.includes(search) || search.includes(seriesTitle)) {
+    score += 7;
+  } else {
+    const searchTokens = new Set(search.split(' ').filter(Boolean));
+    const titleTokens = new Set(seriesTitle.split(' ').filter(Boolean));
+    const overlap = [...searchTokens].filter((token) => titleTokens.has(token)).length;
+    score += overlap / Math.max(searchTokens.size, titleTokens.size, 1);
   }
 
-  if (title.includes(search) || search.includes(title)) {
-    return 8;
+  const volumeNumber = extractVolumeNumber(combinedTitle || rawTitle);
+  if (volumeNumber === 1) {
+    score += 6;
+  } else if (volumeNumber != null) {
+    score -= Math.min(volumeNumber, 5);
   }
 
-  const searchTokens = new Set(search.split(' ').filter(Boolean));
-  const titleTokens = new Set(title.split(' ').filter(Boolean));
-  const overlap = [...searchTokens].filter((token) => titleTokens.has(token)).length;
-  return overlap / Math.max(searchTokens.size, titleTokens.size, 1);
+  const categories = Array.isArray(volumeInfo.categories) ? volumeInfo.categories.join(' ').toLowerCase() : '';
+  if (categories.includes('manga') || categories.includes('comics') || categories.includes('graphic novels')) {
+    score += 1.5;
+  }
+
+  const editionText = `${rawTitle} ${rawSubtitle}`.toLowerCase();
+  if (/\b(omnibus|collector|deluxe|complete|box set)\b/.test(editionText)) {
+    score -= 3;
+  }
+
+  if (extractIsbn13(volumeInfo)) {
+    score += 1;
+  }
+
+  return score;
 }
 
 async function resolveIsbn13(searchTerm) {
-  try {
-    const payload = await fetchJson(buildBookSearchQuery(searchTerm));
-    const matches = (payload.items ?? [])
-      .map((item) => ({
-        item,
-        score: scoreGoogleBook(searchTerm, item),
-        isbn13: extractIsbn13(item.volumeInfo)
-      }))
-      .filter((entry) => entry.isbn13)
-      .sort((left, right) => right.score - left.score);
+  const items = [];
 
-    return matches[0]?.isbn13 ?? null;
-  } catch (error) {
-    console.warn(`ISBN lookup skipped for "${searchTerm}": ${error instanceof Error ? error.message : error}`);
-    return null;
+  for (const query of buildBookSearchQueries(searchTerm)) {
+    try {
+      const payload = await fetchJson(query);
+      items.push(...(payload.items ?? []));
+    } catch (error) {
+      console.warn(`ISBN lookup skipped for "${searchTerm}": ${error instanceof Error ? error.message : error}`);
+    }
   }
+
+  const deduped = [...new Map(
+    items.map((item) => {
+      const volumeInfo = item?.volumeInfo ?? {};
+      const key = extractIsbn13(volumeInfo) || `${cleanText(volumeInfo.title)}::${cleanText(volumeInfo.subtitle)}`;
+      return [key, item];
+    })
+  ).values()];
+
+  const matches = deduped
+    .map((item) => ({
+      item,
+      score: scoreGoogleBook(searchTerm, item),
+      isbn13: extractIsbn13(item.volumeInfo)
+    }))
+    .filter((entry) => entry.isbn13 && entry.score >= 7)
+    .sort((left, right) => right.score - left.score);
+
+  return matches[0]?.isbn13 ?? null;
 }
 
 function pickDisplayTitle(media, fallback) {
@@ -262,7 +347,8 @@ async function main() {
       await sleep(350);
     }
 
-    const isbn13 = cleanText(row.isbn13) || (title ? await resolveIsbn13(title) : null);
+    const manualIsbn13 = cleanText(row.isbn13) || extractBookshopIsbn13(row.bookshop_url);
+    const isbn13 = manualIsbn13 || (title ? await resolveIsbn13(title) : null);
 
     const displayTitle = pickDisplayTitle(anilist, title);
 

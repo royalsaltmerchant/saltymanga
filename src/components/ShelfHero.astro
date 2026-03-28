@@ -4,47 +4,20 @@ import { siteConfig } from '../data/site';
 
 interface Props {
   items: CatalogItem[];
-  buyReadyCount: number;
 }
 
-const { items, buyReadyCount } = Astro.props;
+const { items } = Astro.props;
 const coverItems = items.slice(0, 3);
 ---
 
 <section class="hero-shell" id="top">
-  <header class="hero-bar">
-    <a class="brand-mark" href="#top">{siteConfig.name}</a>
-    <a class="brand-link" href="#setup">Setup</a>
-  </header>
-
   <div class="hero-grid">
     <div class="hero-copy">
-      <p class="hero-eyebrow">Simple CSV to static storefront</p>
-      <h1>Turn a clean list of manga titles into a shelf with live-ready buy links.</h1>
-      <p class="hero-intro">
-        SaltyManga is built to take a minimum CSV, match each series to AniList, resolve ISBN-13, and surface a Bookshop
-        button on every card once the metadata lands.
-      </p>
-
-      <div class="hero-actions">
-        <a class="hero-button" href="#shelf">Browse the shelf</a>
-        <a class="hero-button hero-button--ghost" href="#setup">Setup notes</a>
-      </div>
-
-      <dl class="hero-stats">
-        <div>
-          <dt>Titles on deck</dt>
-          <dd>{items.length}</dd>
-        </div>
-        <div>
-          <dt>Buy-ready now</dt>
-          <dd>{buyReadyCount}</dd>
-        </div>
-        <div>
-          <dt>Source</dt>
-          <dd>CSV + AniList</dd>
-        </div>
-      </dl>
+      <h1>{siteConfig.name}</h1>
+      <p class="hero-intro">{siteConfig.description}</p>
+      <a class="hero-link" href={siteConfig.instagramUrl} rel="noopener noreferrer" target="_blank">
+        Follow @{siteConfig.instagramHandle}
+      </a>
     </div>
 
     <div class="hero-covers" aria-hidden="true">

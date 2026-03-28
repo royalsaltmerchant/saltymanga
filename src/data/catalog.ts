@@ -65,16 +65,3 @@ export function getCatalog() {
   cacheMtimeMs = stats.mtimeMs;
   return cache;
 }
-
-export function getCatalogGenres(items: CatalogItem[]) {
-  const counts = new Map<string, number>();
-  for (const item of items) {
-    for (const genre of item.genres ?? []) {
-      counts.set(genre, (counts.get(genre) ?? 0) + 1);
-    }
-  }
-
-  return [...counts.entries()]
-    .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
-    .map(([genre, count]) => ({ genre, count }));
-}

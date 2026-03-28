@@ -1,6 +1,7 @@
 export const siteConfig = {
-  name: 'SaltyManga',
+  name: 'salty.manga',
   siteUrl: 'https://saltymanga.netlify.app',
-  description:
-    'A single-page manga shelf built from a simple title CSV, AniList metadata, and Bookshop affiliate buy links.'
+  instagramHandle: 'salty.manga',
+  instagramUrl: 'https://www.instagram.com/salty.manga/',
+  description: 'A short shelf of manga picks with AniList details and Bookshop buy links.'
 } as const;

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-28T02:02:23.596Z",
+  "generatedAt": "2026-03-28T02:21:23.844Z",
   "source": {
     "mode": "csv",
     "note": "Built from data/titles.csv, AniList metadata, and ISBN resolution."
@@ -31,7 +31,7 @@
         "Romance",
         "Slice of Life"
       ],
-      "isbn13": "9781974712120",
+      "isbn13": "9781974707126",
       "matchConfidence": "high"
     },
     {
@@ -59,7 +59,7 @@
         "Comedy",
         "Slice of Life"
       ],
-      "isbn13": "9781974717859",
+      "isbn13": "9781974709403",
       "matchConfidence": "high"
     },
     {
@@ -89,7 +89,7 @@
         "Slice of Life",
         "Supernatural"
       ],
-      "isbn13": "9781975325701",
+      "isbn13": "9781975317577",
       "matchConfidence": "high"
     },
     {
@@ -178,7 +178,7 @@
         "Comedy",
         "Supernatural"
       ],
-      "isbn13": "9781974733729",
+      "isbn13": "9781974729845",
       "matchConfidence": "high"
     },
     {
@@ -208,7 +208,7 @@
         "Romance",
         "Slice of Life"
       ],
-      "isbn13": "9781591161271",
+      "isbn13": "9781974711871",
       "matchConfidence": "high"
     },
     {
@@ -237,7 +237,7 @@
         "Romance",
         "Slice of Life"
       ],
-      "isbn13": "9781636993850",
+      "isbn13": "9781646511754",
       "matchConfidence": "high"
     },
     {
@@ -266,7 +266,7 @@
         "Fantasy",
         "Slice of Life"
       ],
-      "isbn13": "9781648278860",
+      "isbn13": "9781685790615",
       "matchConfidence": "high"
     },
     {
@@ -325,7 +325,7 @@
         "Fantasy",
         "Romance"
       ],
-      "isbn13": "9781974714650",
+      "isbn13": "9781974703623",
       "matchConfidence": "high"
     }
   ]
