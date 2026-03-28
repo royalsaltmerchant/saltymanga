@@ -7,18 +7,35 @@ interface Props {
 }
 
 const { item } = Astro.props;
+
+function normalizeText(value: string) {
+  return value
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^\w\s-]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 const bookshopUrl = buildBookshopAffiliateBookUrl(import.meta.env.PUBLIC_BOOKSHOP_AFFILIATE_ID, item.isbn13);
 const imageUrl = item.source.imageUrl ?? item.anilist?.coverImage ?? null;
 const tags = item.source.tags.slice(0, 4);
 const hasActions = Boolean(bookshopUrl || item.source.url);
+const searchIndex = normalizeText(
+  [item.title, item.lookupTitle, ...item.genres, ...item.source.tags, item.anilist?.status]
+    .filter(Boolean)
+    .join(' ')
+);
+const initialCharacter = normalizeText(item.title).charAt(0).toUpperCase();
+const initialLetter = /^[A-Z]$/.test(initialCharacter) ? initialCharacter : '#';
 const detailBits = [
   item.anilist?.status,
-  item.anilist?.score ? `${item.anilist.score}%` : null,
   item.anilist?.volumes ? `${item.anilist.volumes} vols` : null
 ].filter(Boolean);
 ---
 
-<article class="manga-card" data-genres={item.genres.join('|')}>
+<article class="manga-card" data-genres={item.genres.join('|')} data-search={searchIndex} data-initial={initialLetter}>
   {imageUrl && <img class="manga-card-cover" src={imageUrl} alt={`Cover for ${item.title}`} loading="lazy" />}
 
   <div class="manga-card-copy">

@@ -199,6 +199,60 @@ main {
   backdrop-filter: blur(12px);
 }
 
+.shelf-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(10rem, 13rem) auto;
+  gap: 0.85rem;
+  align-items: end;
+  margin-bottom: 1.2rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.shelf-control {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.shelf-control span {
+  color: var(--accent-deep);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.shelf-control input,
+.shelf-control select {
+  width: 100%;
+  min-height: 2.9rem;
+  padding: 0.78rem 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.95rem;
+  background: rgba(8, 10, 12, 0.34);
+  color: var(--ink);
+  font: inherit;
+}
+
+.shelf-control input::placeholder {
+  color: rgba(178, 186, 196, 0.72);
+}
+
+.shelf-control input:focus,
+.shelf-control select:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.26);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
+}
+
+.shelf-results {
+  margin: 0 0 0 auto;
+  padding-bottom: 0.3rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
 .manga-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(16.5rem, 1fr));
@@ -359,9 +413,31 @@ code {
 }
 
 .empty-state {
-  margin: 0;
+  margin: 1.1rem 0 0;
   color: var(--muted);
   text-align: center;
+}
+
+.site-watermark {
+  position: relative;
+  z-index: 1;
+  width: min(110rem, calc(100% - 2.4rem));
+  margin: 0 auto;
+  padding: 0.95rem 0.4rem 2rem;
+  color: rgba(178, 186, 196, 0.72);
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.site-watermark a {
+  color: var(--accent-deep);
+  text-decoration: none;
+}
+
+.site-watermark a:hover {
+  color: var(--accent);
 }
 
 @keyframes rise-in {
@@ -427,5 +503,20 @@ code {
   .page-shell {
     width: calc(100% - 1rem);
     margin-top: -1.2rem;
+  }
+
+  .shelf-toolbar {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .shelf-results,
+  .site-watermark {
+    text-align: left;
+  }
+
+  .site-watermark {
+    width: calc(100% - 1rem);
+    padding-inline: 0.15rem;
   }
 }

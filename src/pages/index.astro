@@ -6,6 +6,23 @@ import { getCatalog } from '../data/catalog';
 
 const catalog = getCatalog();
 const items = catalog.items;
+const sortedItems = [...items].sort((left, right) =>
+  left.title.localeCompare(right.title, undefined, { sensitivity: 'base' })
+);
+
+function getInitialLetter(title: string) {
+  const initialCharacter = title
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^\w\s-]/g, ' ')
+    .trim()
+    .charAt(0);
+
+  return /^[a-z]$/.test(initialCharacter) ? initialCharacter.toUpperCase() : '#';
+}
+
+const alphabet = Array.from(new Set(sortedItems.map((item) => getInitialLetter(item.title))));
 ---
 
 <BaseLayout title="salty.manga">
@@ -14,17 +31,51 @@ const items = catalog.items;
   <main class="page-shell">
     <section class="shelf-section" id="shelf">
       {items.length > 0 ? (
-        <div class="manga-grid">
-          {items.map((item) => <MangaCard item={item} />)}
-        </div>
+        <>
+          <div class="shelf-toolbar" aria-label="Catalog tools">
+            <label class="shelf-control shelf-control--search" for="shelf-search">
+              <span>Search shelf</span>
+              <input id="shelf-search" type="search" placeholder="Title, tag, or genre" autocomplete="off" />
+            </label>
+
+            <label class="shelf-control shelf-control--letter" for="shelf-letter">
+              <span>Starts with</span>
+              <select id="shelf-letter">
+                <option value="">All titles</option>
+                {alphabet.map((letter) => <option value={letter}>{letter}</option>)}
+              </select>
+            </label>
+
+            <p class="shelf-results">
+              <span data-results-count>{sortedItems.length}</span> of {sortedItems.length} titles
+            </p>
+          </div>
+
+          <div class="manga-grid">
+            {sortedItems.map((item) => <MangaCard item={item} />)}
+          </div>
+
+          <p class="empty-state" data-filter-empty hidden>No matches yet. Try a different title or letter.</p>
+        </>
       ) : (
         <p class="empty-state">No manga cards yet.</p>
       )}
     </section>
   </main>
 
+  <footer class="site-watermark">
+    Creator / contact:
+    <a href="https://julianranieri.com" rel="noopener noreferrer" target="_blank">
+      julianranieri.com
+    </a>
+  </footer>
+
   <script is:inline>
     const cards = Array.from(document.querySelectorAll('.manga-card'));
+    const searchInput = document.querySelector('#shelf-search');
+    const letterSelect = document.querySelector('#shelf-letter');
+    const resultsCount = document.querySelector('[data-results-count]');
+    const filterEmptyState = document.querySelector('[data-filter-empty]');
 
     for (const card of cards) {
       const description = card.querySelector('[data-card-description]');
@@ -52,5 +103,47 @@ const items = catalog.items;
         syncToggle();
       });
     }
+
+    const normalizeText = (value) =>
+      value
+        .toLowerCase()
+        .normalize('NFKD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^\w\s-]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+
+    const applyFilters = () => {
+      if (!searchInput || !letterSelect) {
+        return;
+      }
+
+      const query = normalizeText(searchInput.value);
+      const selectedLetter = letterSelect.value;
+      let visibleCount = 0;
+
+      for (const card of cards) {
+        const searchIndex = card.dataset.search ?? '';
+        const initialLetter = card.dataset.initial ?? '';
+        const matchesQuery = !query || searchIndex.includes(query);
+        const matchesLetter = !selectedLetter || initialLetter === selectedLetter;
+        const isVisible = matchesQuery && matchesLetter;
+
+        card.hidden = !isVisible;
+        visibleCount += Number(isVisible);
+      }
+
+      if (resultsCount) {
+        resultsCount.textContent = String(visibleCount);
+      }
+
+      if (filterEmptyState) {
+        filterEmptyState.hidden = visibleCount > 0;
+      }
+    };
+
+    searchInput?.addEventListener('input', applyFilters);
+    letterSelect?.addEventListener('change', applyFilters);
+    applyFilters();
   </script>
 </BaseLayout>
