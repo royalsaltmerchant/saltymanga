@@ -51,6 +51,12 @@ Or in one go:
 npm run refresh:all
 ```
 
+For a production-ready local build that matches Netlify:
+
+```bash
+npm run build:deploy
+```
+
 ## CSV Input Notes
 
 This project is CSV-first. If you want to preserve an original post or shop reference, add a `source_url` column to `data/titles.csv`.
@@ -81,3 +87,19 @@ https://bookshop.org/a/{affiliate_id}/{isbn13}
 ```
 
 That means the site only needs a valid ISBN-13 per manga entry rather than a hand-collected Bookshop product URL for every card.
+
+## Netlify
+
+This repo is configured for Netlify in `netlify.toml`.
+
+- Build command: `npm run build:deploy`
+- Publish directory: `dist`
+- Node version: `22`
+
+Set these environment variables in Netlify before the first production deploy:
+
+- `PUBLIC_BOOKSHOP_AFFILIATE_ID`
+- `GOOGLE_BOOKS_API_KEY`
+- `SITE_URL`
+
+`build:deploy` rebuilds `data/catalog.json` from `data/titles.csv` during each deploy, so production stays in sync with the CSV instead of relying on a previously committed catalog file.
