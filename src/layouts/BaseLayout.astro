@@ -22,6 +22,15 @@ const { title = siteConfig.name, description = siteConfig.description } = Astro.
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.site?.toString() ?? siteConfig.siteUrl} />
     <meta name="twitter:card" content="summary_large_image" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6GD28CJJ1W"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-6GD28CJJ1W');
+    </script>
   </head>
   <body>
     <slot />
