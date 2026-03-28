@@ -14,9 +14,7 @@ const coverItems = items.slice(0, 3);
 <section class="hero-shell" id="top">
   <header class="hero-bar">
     <a class="brand-mark" href="#top">{siteConfig.name}</a>
-    <a class="brand-link" href={siteConfig.instagramUrl} rel="noopener noreferrer" target="_blank">
-      @{siteConfig.instagramHandle}
-    </a>
+    <a class="brand-link" href="#setup">Setup</a>
   </header>
 
   <div class="hero-grid">
@@ -53,7 +51,7 @@ const coverItems = items.slice(0, 3);
       {coverItems.map((item, index) => (
         <img
           class:list={['hero-cover', `hero-cover--${index + 1}`]}
-          src={item.instagram.imageUrl ?? item.anilist?.coverImage ?? undefined}
+          src={item.source.imageUrl ?? item.anilist?.coverImage ?? undefined}
           alt=""
           loading="eager"
         />

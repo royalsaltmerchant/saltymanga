@@ -60,7 +60,7 @@ const menuItems = [
           <article>
             <p class="flow-step">01</p>
             <h3>Start with titles.csv</h3>
-            <p>The builder reads a simple row per manga with optional caption, source URL, notes, and manual ISBN if you have one.</p>
+            <p>The builder reads a simple row per manga with optional source URL, caption, notes, cover image, and manual ISBN if you have one.</p>
           </article>
           <article>
             <p class="flow-step">02</p>
@@ -91,7 +91,7 @@ const menuItems = [
         <div class="setup-copy">
           <p>
             Fill in <code>data/titles.csv</code> with one row per manga. The only required column is <code>title</code>. If you have an original
-            Instagram URL or caption you want preserved, keep those in the optional columns.
+            post URL, caption, or cover image you want preserved, keep those in the optional columns.
           </p>
           <p>
             Netlify also needs <code>PUBLIC_BOOKSHOP_AFFILIATE_ID</code> present at build time so the Bookshop buy buttons render in the

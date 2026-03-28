@@ -6,13 +6,11 @@ export interface CatalogItem {
   lookupTitle: string | null;
   title: string;
   description: string;
-  instagram: {
-    id: string;
-    caption: string;
-    permalink: string | null;
-    timestamp: string | null;
+  source: {
+    caption: string | null;
+    url: string | null;
     imageUrl: string | null;
-    hashtags: string[];
+    tags: string[];
   };
   anilist: {
     id: number;
@@ -33,7 +31,6 @@ export interface CatalogPayload {
   generatedAt: string | null;
   source: {
     mode: string;
-    instagramHandle: string | null;
     note: string | null;
   };
   items: CatalogItem[];
@@ -53,7 +50,6 @@ export function getCatalog() {
       generatedAt: null,
       source: {
         mode: 'missing',
-        instagramHandle: null,
         note: 'Run `npm run build:catalog` once data/titles.csv has been filled in.'
       },
       items: []

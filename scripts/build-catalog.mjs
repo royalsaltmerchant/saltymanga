@@ -275,13 +275,11 @@ async function main() {
         cleanText(row.notes) ||
         cleanText(row.caption) ||
         `${displayTitle} matched from the source CSV.`,
-      instagram: {
-        id: normalizeTitle(title),
+      source: {
         caption: cleanText(row.caption) || null,
-        permalink: cleanText(row.instagram_url) || null,
-        timestamp: null,
+        url: cleanText(row.source_url) || null,
         imageUrl: cleanText(row.cover_image) || cleanText(anilist?.coverImage?.extraLarge) || cleanText(anilist?.coverImage?.large) || null,
-        hashtags: parseHashtags(row.caption)
+        tags: parseHashtags(row.caption)
       },
       anilist: anilist
         ? {
@@ -307,8 +305,7 @@ async function main() {
     generatedAt: new Date().toISOString(),
     source: {
       mode: 'csv',
-      instagramHandle: 'salty.manga',
-      note: 'Built from titles.csv, AniList metadata, and ISBN resolution.'
+      note: 'Built from data/titles.csv, AniList metadata, and ISBN resolution.'
     },
     items
   });

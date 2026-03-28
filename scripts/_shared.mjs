@@ -40,15 +40,6 @@ export function initEnv() {
   loadEnvFile('.env.local');
 }
 
-export function readJson(relativePath, fallbackValue = null) {
-  const filePath = path.join(projectRoot, relativePath);
-  if (!fs.existsSync(filePath)) {
-    return fallbackValue;
-  }
-
-  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-}
-
 export function writeJson(relativePath, value) {
   const filePath = path.join(projectRoot, relativePath);
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
@@ -72,17 +63,6 @@ export function stripHtml(value) {
 
 export function normalizeTitle(value) {
   return cleanText(String(value ?? '').toLowerCase().replace(/[^a-z0-9]+/g, ' '));
-}
-
-export function toTitleCase(value) {
-  return cleanText(value)
-    .split(' ')
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(' ');
-}
-
-export function slugify(value) {
-  return normalizeTitle(value).replace(/\s+/g, '-');
 }
 
 export async function sleep(ms) {
