@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MangaCard from '../components/MangaCard.astro';
+import SectionMenu from '../components/SectionMenu.astro';
+import ShelfHero from '../components/ShelfHero.astro';
+import { getCatalog, getCatalogGenres } from '../data/catalog';
+
+const catalog = getCatalog();
+const items = catalog.items;
+const genres = getCatalogGenres(items).slice(0, 6);
+const buyReadyCount = items.filter((item) => Boolean(item.isbn13)).length;
+const menuItems = [
+  { label: 'Shelf', href: '#shelf' },
+  { label: 'Flow', href: '#flow' },
+  { label: 'Setup', href: '#setup' }
+];
+---
+
+<BaseLayout title="SaltyManga | CSV Shelf" description="CSV-sourced manga shelf with AniList enrichment and Bookshop buy links.">
+  <ShelfHero items={items} buyReadyCount={buyReadyCount} />
+
+  <div class="page-shell">
+    <SectionMenu items={menuItems} />
+
+    <main>
+      <section class="shelf-section" id="shelf">
+        <div class="section-heading">
+          <div>
+            <p class="section-label">Shelf</p>
+            <h2>Every row, turned into a card.</h2>
+          </div>
+          <p class="section-note">
+            Current mode: <strong>{catalog.source.mode}</strong>. The seeded demo data here will be replaced once you swap in your real CSV.
+          </p>
+        </div>
+
+        {genres.length > 0 && (
+          <div class="genre-filter" aria-label="Genre filter">
+            <button type="button" class="is-active" data-filter="all">All</button>
+            {genres.map((genre) => (
+              <button type="button" data-filter={genre.genre}>{genre.genre}</button>
+            ))}
+          </div>
+        )}
+
+        <div class="manga-grid">
+          {items.map((item) => <MangaCard item={item} />)}
+        </div>
+      </section>
+
+      <section class="flow-section" id="flow">
+        <div class="section-heading">
+          <div>
+            <p class="section-label">Flow</p>
+            <h2>CSV in, storefront out.</h2>
+          </div>
+        </div>
+
+        <div class="flow-grid">
+          <article>
+            <p class="flow-step">01</p>
+            <h3>Start with titles.csv</h3>
+            <p>The builder reads a simple row per manga with optional caption, source URL, notes, and manual ISBN if you have one.</p>
+          </article>
+          <article>
+            <p class="flow-step">02</p>
+            <h3>Match to AniList</h3>
+            <p>Each title is searched against AniList to pull summary, genres, score, status, and a strong cover image.</p>
+          </article>
+          <article>
+            <p class="flow-step">03</p>
+            <h3>Resolve ISBN-13</h3>
+            <p>The builder looks for an ISBN-13 automatically so the Bookshop link can be generated without a hand-built URL list.</p>
+          </article>
+          <article>
+            <p class="flow-step">04</p>
+            <h3>Render the shelf</h3>
+            <p>The static page stays simple: genre filter, clean cards, AniList link, optional source link, and Bookshop buy button.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="setup-section" id="setup">
+        <div class="section-heading">
+          <div>
+            <p class="section-label">Setup</p>
+            <h2>What still needs from you.</h2>
+          </div>
+        </div>
+
+        <div class="setup-copy">
+          <p>
+            Fill in <code>data/titles.csv</code> with one row per manga. The only required column is <code>title</code>. If you have an original
+            Instagram URL or caption you want preserved, keep those in the optional columns.
+          </p>
+          <p>
+            Netlify also needs <code>PUBLIC_BOOKSHOP_AFFILIATE_ID</code> present at build time so the Bookshop buy buttons render in the
+            generated HTML.
+          </p>
+          <p>
+            The site is otherwise ready: Astro frontend, CSV builder, AniList matching, ISBN lookup, and the one-page shelf layout are all
+            wired.
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script is:inline>
+    const buttons = Array.from(document.querySelectorAll('[data-filter]'));
+    const cards = Array.from(document.querySelectorAll('.manga-card'));
+
+    for (const button of buttons) {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.filter;
+        buttons.forEach((entry) => entry.classList.toggle('is-active', entry === button));
+
+        cards.forEach((card) => {
+          const genres = String(card.getAttribute('data-genres') ?? '');
+          const visible = filter === 'all' || genres.includes(String(filter ?? ''));
+          card.toggleAttribute('hidden', !visible);
+        });
+      });
+    }
+  </script>
+</BaseLayout>

@@ -1,0 +1,261 @@
+{
+  "generatedAt": "2026-03-28T01:39:37.059Z",
+  "source": {
+    "mode": "csv",
+    "instagramHandle": "salty.manga",
+    "note": "Built from titles.csv, AniList metadata, and ISBN resolution."
+  },
+  "items": [
+    {
+      "id": "komi can t communicate",
+      "lookupTitle": "Komi Can't Communicate",
+      "title": "Komi Can't Communicate",
+      "description": "Timid Tadano is a total wallflower, and that’s just the way he likes it. But all that changes when he finds himself alone in a classroom on the first day of high school with the legendary Komi. He quickly realizes she isn’t aloof—she’s just super awkward. Now he’s made it his mission to help her on her quest to make 100 friends! (Source: VIZ Media) Notes: - Winner of the 67th Shogakukan Manga Award in the Shounen Category in 2021. - Includes 37 extra chapters.",
+      "instagram": {
+        "id": "komi can t communicate",
+        "caption": null,
+        "permalink": null,
+        "timestamp": null,
+        "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx97852-M7vlc2OGR2gp.jpg",
+        "hashtags": []
+      },
+      "anilist": {
+        "id": 97852,
+        "url": "https://anilist.co/manga/97852",
+        "score": 77,
+        "status": "FINISHED",
+        "format": "MANGA",
+        "volumes": 37,
+        "chapters": 537,
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx97852-M7vlc2OGR2gp.jpg"
+      },
+      "genres": [
+        "Comedy",
+        "Romance",
+        "Slice of Life"
+      ],
+      "isbn13": "9781974712120",
+      "matchConfidence": "high"
+    },
+    {
+      "id": "the way of the househusband",
+      "lookupTitle": "The Way of the Househusband",
+      "title": "The Way of the Househusband",
+      "description": "He was the fiercest member of the yakuza, a man who left countless underworld legends in his wake. They called him “the Immortal Dragon.” But one day he walked away from it all to travel another path—the path of the househusband! The curtain rises on this cozy yakuza comedy! (Source: VIZ Media)",
+      "instagram": {
+        "id": "the way of the househusband",
+        "caption": null,
+        "permalink": null,
+        "timestamp": null,
+        "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/nx101233-ipG2rYitNxyd.jpg",
+        "hashtags": []
+      },
+      "anilist": {
+        "id": 101233,
+        "url": "https://anilist.co/manga/101233",
+        "score": 79,
+        "status": "RELEASING",
+        "format": "MANGA",
+        "volumes": null,
+        "chapters": null,
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/nx101233-ipG2rYitNxyd.jpg"
+      },
+      "genres": [
+        "Comedy",
+        "Slice of Life"
+      ],
+      "isbn13": "9781974717859",
+      "matchConfidence": "high"
+    },
+    {
+      "id": "mieruko chan",
+      "lookupTitle": "Mieruko-chan",
+      "title": "Mieruko-chan",
+      "description": "One day, she could see…everything. What’s a girl to do when hideous monsters appear no matter which way she turns? And on top of that, nobody else can see them! Obviously, there’s only one thing that makes sense—ignore them. Kinda hard to put theory into practice, though, when the ghosts know she’s watching… (Source: Yen Press)",
+      "instagram": {
+        "id": "mieruko chan",
+        "caption": null,
+        "permalink": null,
+        "timestamp": null,
+        "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx105097-nMpc8bjBeuXE.jpg",
+        "hashtags": []
+      },
+      "anilist": {
+        "id": 105097,
+        "url": "https://anilist.co/manga/105097",
+        "score": 77,
+        "status": "RELEASING",
+        "format": "MANGA",
+        "volumes": null,
+        "chapters": null,
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx105097-nMpc8bjBeuXE.jpg"
+      },
+      "genres": [
+        "Comedy",
+        "Horror",
+        "Slice of Life",
+        "Supernatural"
+      ],
+      "isbn13": "9781975325701",
+      "matchConfidence": "high"
+    },
+    {
+      "id": "ako and bambi",
+      "lookupTitle": "Ako and Bambi",
+      "title": "Ako and Bambi",
+      "description": "What happens when you put one down-on-his-luck amateur novelist and one amnesiac ghost girl in one bargain-priced haunted apartment? You get the punch line of Bambi’s life. The good news is, Ako is neither the ghost of the person who supposedly committed suicide in the rental nor an unfriendly poltergeist hell-bent on causing chaos. But she needs a place to hang out until she can ascend to wherever ghosts go and Bambi needs source material for his career, so maybe they can have a mutually beneficial relationship... (Source: Yen Press) Notes: -Serialization of the main storyline ended on 11 November 2021. Extra chapters are currently being selfpublished. -On 2022, the manga got licensed by the editorial Asahi Shimbun, being published under their Sonorama + Comics label.",
+      "instagram": {
+        "id": "ako and bambi",
+        "caption": null,
+        "permalink": null,
+        "timestamp": null,
+        "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx122649-CzRqsZ4Cclx9.jpg",
+        "hashtags": []
+      },
+      "anilist": {
+        "id": 122649,
+        "url": "https://anilist.co/manga/122649",
+        "score": 71,
+        "status": "FINISHED",
+        "format": "MANGA",
+        "volumes": 8,
+        "chapters": 100,
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx122649-CzRqsZ4Cclx9.jpg"
+      },
+      "genres": [
+        "Mystery",
+        "Romance",
+        "Slice of Life",
+        "Supernatural"
+      ],
+      "isbn13": "9781975377847",
+      "matchConfidence": "high"
+    },
+    {
+      "id": "the girl with the sanpaku eyes",
+      "lookupTitle": "The Girl with the Sanpaku Eyes",
+      "title": "The Girl with the Sanpaku Eyes",
+      "description": "Meet Amane Mizuno a girl with fierce sanpaku eyes and a pure heart! She has recently fallen for a boy named Katou, who has the exact opposite attitude! Will the tender-hearted Amane ever tell him how she feels?! (Source: Denpa) Notes: - Chapter count includes a bonus chapter. - Originally self-published on Twitter, after six chapters it was serialised by GANGANpixiv.",
+      "instagram": {
+        "id": "the girl with the sanpaku eyes",
+        "caption": null,
+        "permalink": null,
+        "timestamp": null,
+        "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/nx103184-otHs1iKcsUu5.jpg",
+        "hashtags": []
+      },
+      "anilist": {
+        "id": 103184,
+        "url": "https://anilist.co/manga/103184",
+        "score": 69,
+        "status": "FINISHED",
+        "format": "MANGA",
+        "volumes": 5,
+        "chapters": 53,
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/nx103184-otHs1iKcsUu5.jpg"
+      },
+      "genres": [
+        "Comedy",
+        "Romance",
+        "Slice of Life"
+      ],
+      "isbn13": "9781634429580",
+      "matchConfidence": "high"
+    },
+    {
+      "id": "rooster fighter",
+      "lookupTitle": "Rooster Fighter",
+      "title": "Rooster Fighter",
+      "description": "The neighborhood cock of the walk is more than just an ordinary rooster—he’s humanity’s greatest defender! His opponents may be ten stories tall, but nothing is bigger than his stout heart and his fearsome battle cry—cock-a-doodle-doo! (Source: VIZ Media)",
+      "instagram": {
+        "id": "rooster fighter",
+        "caption": null,
+        "permalink": null,
+        "timestamp": null,
+        "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx127554-qXczrBrFMXBM.jpg",
+        "hashtags": []
+      },
+      "anilist": {
+        "id": 127554,
+        "url": "https://anilist.co/manga/127554",
+        "score": 72,
+        "status": "RELEASING",
+        "format": "MANGA",
+        "volumes": null,
+        "chapters": null,
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx127554-qXczrBrFMXBM.jpg"
+      },
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Supernatural"
+      ],
+      "isbn13": "9781974733729",
+      "matchConfidence": "high"
+    },
+    {
+      "id": "maison ikkoku",
+      "lookupTitle": "Maison Ikkoku",
+      "title": "Maison Ikkoku",
+      "description": "Travel into Japan's nuttiest apartment house and meet its volatile inhabitants: Kyoko, the beautiful and mysterious new apartment manager; Yusaku, the exam-addled college student; Mrs. Ichinose, the drunken gossip; Kentaro, her bratty son; Akemi, the boozy bar hostess; and the mooching and peeping Mr. Yotsuya. Funny, touching, and a tad off-kilter, Maison Ikkoku is the great Rumiko Takahashi at her very best. (Source: VIZ Media)",
+      "instagram": {
+        "id": "maison ikkoku",
+        "caption": null,
+        "permalink": null,
+        "timestamp": null,
+        "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx30688-vhFGM9jUcGrU.png",
+        "hashtags": []
+      },
+      "anilist": {
+        "id": 30688,
+        "url": "https://anilist.co/manga/30688",
+        "score": 80,
+        "status": "FINISHED",
+        "format": "MANGA",
+        "volumes": 15,
+        "chapters": 162,
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx30688-vhFGM9jUcGrU.png"
+      },
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance",
+        "Slice of Life"
+      ],
+      "isbn13": "9781591161271",
+      "matchConfidence": "high"
+    },
+    {
+      "id": "shikimori s not just a cutie",
+      "lookupTitle": "Shikimori's Not Just a Cutie",
+      "title": "Shikimori's Not Just a Cutie",
+      "description": "Shikimori seems like the perfect girlfriend: cute, fun to be around, sweet when she wants to be… but she has a cool dark side that comes out under the right circumstances. And her boyfriend Izumi loves to be around when that happens! (Source: Kodansha USA) Notes: - Chapter count includes 25 extra chapters. - The work was first self-published by the author on their Twitter account. - It began its official publication in Pocket Magazine on February 2, 2019. - Won 5th place in Tsugimanga 2020 Award in the Web Manga Category.",
+      "instagram": {
+        "id": "shikimori s not just a cutie",
+        "caption": null,
+        "permalink": null,
+        "timestamp": null,
+        "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx107282-ZzzqzHRZShT6.png",
+        "hashtags": []
+      },
+      "anilist": {
+        "id": 107282,
+        "url": "https://anilist.co/manga/107282",
+        "score": 74,
+        "status": "FINISHED",
+        "format": "MANGA",
+        "volumes": 20,
+        "chapters": 203,
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx107282-ZzzqzHRZShT6.png"
+      },
+      "genres": [
+        "Comedy",
+        "Romance",
+        "Slice of Life"
+      ],
+      "isbn13": "9781636993850",
+      "matchConfidence": "high"
+    }
+  ]
+}

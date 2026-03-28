@@ -1,0 +1,18 @@
+---
+interface MenuItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  items: MenuItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav class="section-menu" aria-label="Section menu">
+  {items.map((item) => (
+    <a href={item.href}>{item.label}</a>
+  ))}
+</nav>

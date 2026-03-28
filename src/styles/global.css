@@ -1,0 +1,560 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+  color-scheme: light;
+  --page-bg: #f3ede1;
+  --paper: rgba(255, 249, 239, 0.84);
+  --paper-strong: rgba(255, 252, 246, 0.96);
+  --ink: #1f1712;
+  --muted: #685648;
+  --line: rgba(71, 48, 26, 0.14);
+  --accent: #c15f29;
+  --accent-deep: #8f3a17;
+  --shadow: 0 24px 60px rgba(54, 34, 18, 0.12);
+  --radius: 1.5rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at top, rgba(241, 180, 117, 0.3), transparent 26%),
+    linear-gradient(180deg, #ecd9c2 0%, var(--page-bg) 26%, #efe9df 100%);
+  color: var(--ink);
+  font-family: 'Manrope', sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.hero-shell {
+  position: relative;
+  padding: 1.2rem clamp(1.2rem, 2vw, 2rem) 4rem;
+  overflow: clip;
+  background:
+    linear-gradient(135deg, rgba(84, 37, 16, 0.12), transparent 38%),
+    radial-gradient(circle at right, rgba(255, 212, 142, 0.45), transparent 34%);
+}
+
+.hero-shell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 2.2rem 2.2rem;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.hero-bar,
+.hero-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand-mark,
+.brand-link {
+  text-decoration: none;
+}
+
+.brand-mark {
+  font-family: 'Fraunces', serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.brand-link {
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 26rem);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+  min-height: calc(100svh - 4rem);
+}
+
+.hero-copy {
+  max-width: 42rem;
+  padding: clamp(2rem, 6vw, 4.5rem) 0 1rem;
+  animation: rise-in 0.7s ease both;
+}
+
+.hero-eyebrow,
+.section-label,
+.manga-card-kicker,
+.flow-step {
+  margin: 0 0 0.9rem;
+  color: var(--accent-deep);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero-copy h1,
+.section-heading h2,
+.flow-grid h3 {
+  margin: 0;
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  line-height: 0.96;
+}
+
+.hero-copy h1 {
+  max-width: 12ch;
+  font-size: clamp(3.2rem, 7vw, 6.6rem);
+}
+
+.hero-intro,
+.section-note,
+.setup-copy p,
+.flow-grid p,
+.manga-card-description,
+.manga-card-meta,
+.manga-card-genres {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.hero-intro {
+  max-width: 38rem;
+  margin: 1.35rem 0 0;
+  font-size: 1.03rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.6rem;
+}
+
+.hero-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.75rem 1.1rem;
+  border-radius: 999px;
+  background: var(--accent-deep);
+  color: #fffaf2;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 18px 36px rgba(114, 47, 21, 0.24);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 24px 44px rgba(114, 47, 21, 0.28);
+}
+
+.hero-button--ghost {
+  background: rgba(255, 252, 246, 0.6);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px rgba(66, 42, 20, 0.12);
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  max-width: 34rem;
+  margin: 2rem 0 0;
+}
+
+.hero-stats div {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(66, 42, 20, 0.12);
+}
+
+.hero-stats dt {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.hero-stats dd {
+  margin: 0.3rem 0 0;
+  font-family: 'Fraunces', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.hero-covers {
+  position: relative;
+  min-height: 36rem;
+}
+
+.hero-cover {
+  position: absolute;
+  width: min(19rem, 66vw);
+  border-radius: 1.7rem;
+  box-shadow: var(--shadow);
+  object-fit: cover;
+  transform-origin: center;
+  animation: float-in 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-cover--1 {
+  inset: 0 auto auto 0;
+  transform: rotate(-10deg);
+}
+
+.hero-cover--2 {
+  inset: 6.5rem 2rem auto auto;
+  transform: rotate(7deg);
+  animation-delay: 0.12s;
+}
+
+.hero-cover--3 {
+  inset: auto 4rem 0 auto;
+  transform: rotate(-4deg);
+  animation-delay: 0.2s;
+}
+
+.page-shell {
+  width: min(110rem, calc(100% - 2.4rem));
+  margin: -2rem auto 4rem;
+}
+
+.section-menu {
+  position: sticky;
+  top: 0.8rem;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  width: fit-content;
+  margin: 0 auto 1.8rem;
+  padding: 0.7rem;
+  border: 1px solid rgba(73, 45, 21, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 250, 244, 0.72);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 20px 42px rgba(53, 31, 13, 0.08);
+}
+
+.section-menu a {
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.section-menu a:hover {
+  background: rgba(193, 95, 41, 0.12);
+  color: var(--ink);
+}
+
+main {
+  display: grid;
+  gap: 2.3rem;
+}
+
+.shelf-section,
+.flow-section,
+.setup-section {
+  padding: clamp(1.5rem, 2.4vw, 2rem);
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 0.3rem);
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  margin-bottom: 1.4rem;
+}
+
+.section-heading h2 {
+  font-size: clamp(2.1rem, 4vw, 3.6rem);
+}
+
+.section-note {
+  max-width: 24rem;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.genre-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.3rem;
+}
+
+.genre-filter button {
+  padding: 0.6rem 0.9rem;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(102, 69, 41, 0.08);
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.genre-filter button:hover,
+.genre-filter button.is-active {
+  background: var(--accent-deep);
+  color: #fffaf2;
+  transform: translateY(-1px);
+}
+
+.manga-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: 1rem;
+}
+
+.manga-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 100%;
+  border-radius: 1.35rem;
+  overflow: hidden;
+  background: var(--paper-strong);
+  box-shadow: 0 18px 40px rgba(51, 28, 12, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.manga-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 48px rgba(51, 28, 12, 0.12);
+}
+
+.manga-card[hidden] {
+  display: none;
+}
+
+.manga-card-cover {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.manga-card-copy {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1rem 1rem 1.1rem;
+}
+
+.manga-card-header h2 {
+  margin: 0;
+  font-family: 'Fraunces', serif;
+  font-size: 1.5rem;
+  line-height: 1.1;
+}
+
+.manga-card-kicker,
+.manga-card-meta,
+.manga-card-description,
+.manga-card-genres {
+  margin: 0;
+}
+
+.manga-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.manga-card-tags li {
+  padding: 0.32rem 0.52rem;
+  border-radius: 999px;
+  background: rgba(193, 95, 41, 0.08);
+  color: var(--accent-deep);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.manga-card-genres span {
+  display: block;
+  margin-bottom: 0.2rem;
+  color: var(--ink);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.manga-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.manga-card-actions a {
+  color: var(--accent-deep);
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.manga-card-actions a:hover {
+  color: var(--ink);
+}
+
+.buy-link {
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #fff0cc 0%, #f4d7a2 100%);
+  box-shadow: inset 0 0 0 1px rgba(151, 88, 29, 0.16);
+}
+
+.flow-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.flow-grid article {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(72, 44, 21, 0.12);
+}
+
+.flow-grid h3 {
+  margin-top: 0;
+  font-size: 1.3rem;
+}
+
+.setup-copy {
+  display: grid;
+  gap: 0.9rem;
+  max-width: 54rem;
+}
+
+.setup-copy p {
+  margin: 0;
+}
+
+code {
+  padding: 0.14rem 0.28rem;
+  border-radius: 0.4rem;
+  background: rgba(49, 28, 12, 0.08);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.9em;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-in {
+  from {
+    opacity: 0;
+    transform: translateY(36px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 960px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .hero-covers {
+    min-height: 27rem;
+  }
+
+  .flow-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .hero-shell {
+    padding-inline: 1rem;
+    padding-bottom: 2.6rem;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(2.6rem, 14vw, 4.2rem);
+  }
+
+  .hero-stats,
+  .flow-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-covers {
+    min-height: 22rem;
+  }
+
+  .hero-cover {
+    width: min(14rem, 58vw);
+  }
+
+  .hero-cover--2 {
+    inset: 3.5rem 0.8rem auto auto;
+  }
+
+  .hero-cover--3 {
+    inset: auto 2rem 0 auto;
+  }
+
+  .page-shell {
+    width: calc(100% - 1rem);
+    margin-top: -1.2rem;
+  }
+
+  .section-heading {
+    align-items: start;
+    flex-direction: column;
+  }
+}

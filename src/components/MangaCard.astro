@@ -1,0 +1,65 @@
+---
+import type { CatalogItem } from '../data/catalog';
+import { buildBookshopAffiliateBookUrl } from '../utils/bookshop';
+
+interface Props {
+  item: CatalogItem;
+}
+
+const { item } = Astro.props;
+const bookshopUrl = buildBookshopAffiliateBookUrl(import.meta.env.PUBLIC_BOOKSHOP_AFFILIATE_ID, item.isbn13);
+const imageUrl = item.instagram.imageUrl ?? item.anilist?.coverImage ?? null;
+const hashtags = item.instagram.hashtags.slice(0, 4);
+const detailBits = [
+  item.anilist?.status,
+  item.anilist?.score ? `${item.anilist.score}%` : null,
+  item.anilist?.volumes ? `${item.anilist.volumes} vols` : null
+].filter(Boolean);
+---
+
+<article class="manga-card" data-genres={item.genres.join('|')}>
+  {imageUrl && <img class="manga-card-cover" src={imageUrl} alt={`Cover for ${item.title}`} loading="lazy" />}
+
+  <div class="manga-card-copy">
+    <div class="manga-card-header">
+      <p class="manga-card-kicker">{item.lookupTitle ?? 'CSV match'}</p>
+      <h2>{item.title}</h2>
+      {detailBits.length > 0 && <p class="manga-card-meta">{detailBits.join(' · ')}</p>}
+    </div>
+
+    <p class="manga-card-description">{item.description}</p>
+
+    {hashtags.length > 0 && (
+      <ul class="manga-card-tags" aria-label={`${item.title} hashtags`}>
+        {hashtags.map((tag) => <li>#{tag}</li>)}
+      </ul>
+    )}
+
+    {item.genres.length > 0 && (
+      <p class="manga-card-genres">
+        <span>Genres</span>
+        {item.genres.join(' · ')}
+      </p>
+    )}
+
+    <div class="manga-card-actions">
+      {bookshopUrl && (
+        <a class="buy-link" href={bookshopUrl} rel="noopener noreferrer" target="_blank">
+          Buy on Bookshop
+        </a>
+      )}
+
+      {item.anilist?.url && (
+        <a href={item.anilist.url} rel="noopener noreferrer" target="_blank">
+          View AniList
+        </a>
+      )}
+
+      {item.instagram.permalink && (
+        <a href={item.instagram.permalink} rel="noopener noreferrer" target="_blank">
+          View source
+        </a>
+      )}
+    </div>
+  </div>
+</article>

@@ -1,0 +1,46 @@
+{
+  "generatedAt": "2026-03-27T23:00:00.000Z",
+  "source": "demo",
+  "items": [
+    {
+      "id": "demo-yotsuba",
+      "caption": "Weekend comfort reread. Small chaos, big payoff. #yotsuba #sliceoflife #manga",
+      "permalink": "https://www.instagram.com/salty.manga/",
+      "timestamp": "2026-03-20T18:10:00.000Z",
+      "mediaType": "IMAGE",
+      "imageUrl": "https://images.yenpress.com/imgs/9780316073875.jpg?w=408&h=612&type=books&s=5d7189ab7f3136c5925f9c69ecbb71ac"
+    },
+    {
+      "id": "demo-delicious-in-dungeon",
+      "caption": "Still one of the easiest fantasy recs to hand someone. #dungeonmeshi #deliciousindungeon #fantasymanga",
+      "permalink": "https://www.instagram.com/salty.manga/",
+      "timestamp": "2026-03-18T16:05:00.000Z",
+      "mediaType": "IMAGE",
+      "imageUrl": "https://images.yenpress.com/imgs/9780316471855.jpg?w=408&h=612&type=books&s=3aaf59dfb2d0b486199c9fc03be70d38"
+    },
+    {
+      "id": "demo-vanitas",
+      "caption": "Aesthetic coats, cursed books, and immaculate atmosphere. #vanitasnocarte #thecasestudyofvanitas #manga",
+      "permalink": "https://www.instagram.com/salty.manga/",
+      "timestamp": "2026-03-15T20:24:00.000Z",
+      "mediaType": "IMAGE",
+      "imageUrl": "https://images.yenpress.com/imgs/9780316552813.jpg?w=408&h=612&type=books&s=e62962987c6e3f44741f8bec05eafe6f"
+    },
+    {
+      "id": "demo-soul-eater",
+      "caption": "The shape language on these covers still goes hard. #souleater #actionmanga #manga",
+      "permalink": "https://www.instagram.com/salty.manga/",
+      "timestamp": "2026-03-12T14:42:00.000Z",
+      "mediaType": "IMAGE",
+      "imageUrl": "https://images.yenpress.com/imgs/9780759530010.jpg?w=408&h=612&type=books&s=dddf1e2be519728c531631ad2ac36db3"
+    },
+    {
+      "id": "demo-your-name",
+      "caption": "Still lands exactly the way it should. #yourname #romancemanga #manga",
+      "permalink": "https://www.instagram.com/salty.manga/",
+      "timestamp": "2026-03-09T17:33:00.000Z",
+      "mediaType": "IMAGE",
+      "imageUrl": "https://images.yenpress.com/imgs/9780316558556.jpg?w=408&h=612&type=books&s=46afa3c4f26b232ec57d8033bc4e0243"
+    }
+  ]
+}
