@@ -28,8 +28,13 @@ const { title = siteConfig.name, description = siteConfig.description } = Astro.
       function gtag() {
         dataLayer.push(arguments);
       }
+      const cookieDomain = ['localhost', '127.0.0.1'].includes(window.location.hostname)
+        ? 'none'
+        : window.location.hostname;
       gtag('js', new Date());
-      gtag('config', 'G-6GD28CJJ1W');
+      gtag('config', 'G-6GD28CJJ1W', {
+        cookie_domain: cookieDomain
+      });
     </script>
   </head>
   <body>
