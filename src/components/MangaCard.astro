@@ -10,6 +10,7 @@ const { item } = Astro.props;
 const bookshopUrl = buildBookshopAffiliateBookUrl(import.meta.env.PUBLIC_BOOKSHOP_AFFILIATE_ID, item.isbn13);
 const imageUrl = item.source.imageUrl ?? item.anilist?.coverImage ?? null;
 const tags = item.source.tags.slice(0, 4);
+const hasActions = Boolean(bookshopUrl || item.source.url);
 const detailBits = [
   item.anilist?.status,
   item.anilist?.score ? `${item.anilist.score}%` : null,
@@ -27,7 +28,12 @@ const detailBits = [
       {detailBits.length > 0 && <p class="manga-card-meta">{detailBits.join(' · ')}</p>}
     </div>
 
-    <p class="manga-card-description">{item.description}</p>
+    <div class="manga-card-description-wrap">
+      <p class="manga-card-description" data-card-description>{item.description}</p>
+      <button class="manga-card-toggle" type="button" data-card-toggle hidden aria-expanded="false">
+        Read more
+      </button>
+    </div>
 
     {tags.length > 0 && (
       <ul class="manga-card-tags" aria-label={`${item.title} tags`}>
@@ -42,24 +48,20 @@ const detailBits = [
       </p>
     )}
 
-    <div class="manga-card-actions">
-      {bookshopUrl && (
-        <a class="buy-link" href={bookshopUrl} rel="noopener noreferrer" target="_blank">
-          Buy on Bookshop
-        </a>
-      )}
+    {hasActions && (
+      <div class="manga-card-actions">
+        {bookshopUrl && (
+          <a class="buy-link" href={bookshopUrl} rel="noopener noreferrer" target="_blank">
+            Buy on Bookshop
+          </a>
+        )}
 
-      {item.anilist?.url && (
-        <a href={item.anilist.url} rel="noopener noreferrer" target="_blank">
-          View AniList
-        </a>
-      )}
-
-      {item.source.url && (
-        <a href={item.source.url} rel="noopener noreferrer" target="_blank">
-          View source
-        </a>
-      )}
-    </div>
+        {item.source.url && (
+          <a href={item.source.url} rel="noopener noreferrer" target="_blank">
+            View source
+          </a>
+        )}
+      </div>
+    )}
   </div>
 </article>

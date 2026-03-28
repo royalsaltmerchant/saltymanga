@@ -3,5 +3,5 @@ export const siteConfig = {
   siteUrl: 'https://saltymanga.netlify.app',
   instagramHandle: 'salty.manga',
   instagramUrl: 'https://www.instagram.com/salty.manga/',
-  description: 'A short shelf of manga picks with AniList details and Bookshop buy links.'
+  description: 'Curated manga worth its salt.'
 } as const;

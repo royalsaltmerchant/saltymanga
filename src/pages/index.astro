@@ -22,4 +22,35 @@ const items = catalog.items;
       )}
     </section>
   </main>
+
+  <script is:inline>
+    const cards = Array.from(document.querySelectorAll('.manga-card'));
+
+    for (const card of cards) {
+      const description = card.querySelector('[data-card-description]');
+      const toggle = card.querySelector('[data-card-toggle]');
+      if (!description || !toggle) {
+        continue;
+      }
+
+      const syncToggle = () => {
+        const expanded = card.classList.contains('is-expanded');
+        toggle.setAttribute('aria-expanded', String(expanded));
+        toggle.textContent = expanded ? 'Show less' : 'Read more';
+      };
+
+      const needsToggle = description.scrollHeight > description.clientHeight + 4;
+      if (!needsToggle) {
+        continue;
+      }
+
+      toggle.hidden = false;
+      syncToggle();
+
+      toggle.addEventListener('click', () => {
+        card.classList.toggle('is-expanded');
+        syncToggle();
+      });
+    }
+  </script>
 </BaseLayout>
