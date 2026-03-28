@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-28T02:38:07.757Z",
+  "generatedAt": "2026-03-28T19:34:45Z",
   "source": {
     "mode": "csv",
     "note": "Built from data/titles.csv, AniList metadata, and ISBN resolution."
@@ -327,6 +327,27 @@
       ],
       "isbn13": "9781974703623",
       "matchConfidence": "high"
+    },
+    {
+      "id": "the white cat s revenge as plotted from the dragon king s lap",
+      "lookupTitle": "The White Cat's Revenge as Plotted from the Dragon King's Lap",
+      "title": "The White Cat's Revenge as Plotted from the Dragon King's Lap",
+      "description": "Ruri just can't get away from Asahi. Her clingy, oblivious childhood friend is beloved by everyone, leaving Ruri to deal with resentment and jealousy from Asahi's groupies. When Asahi is summoned to another world to be its \"Priestess Princess,\" Ruri is dragged along too and exiled to the woods as a traitor. Away from Asahi's shadow at last, she may find that this new world is the perfect place for a new beginning. (Source: Yen Press)",
+      "source": {
+        "caption": null,
+        "url": "https://yenpress.com/titles/9781975317485-the-white-cat-s-revenge-as-plotted-from-the-dragon-king-s-lap-vol-1",
+        "imageUrl": "https://images.yenpress.com/imgs/9781975317485.jpg?h=612&s=3460a18058ac1c840251fe9d3c501538&type=books&w=408",
+        "tags": []
+      },
+      "anilist": null,
+      "genres": [
+        "Drama",
+        "Fantasy",
+        "Romance",
+        "Isekai"
+      ],
+      "isbn13": "9781975317485",
+      "matchConfidence": "low"
     }
   ]
 }
