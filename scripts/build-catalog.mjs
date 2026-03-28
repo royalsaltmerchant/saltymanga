@@ -405,6 +405,8 @@ async function main() {
 
     const displayTitle = pickDisplayTitle(anilist, cleanText(fallbackItem?.title) || title);
     const catalogAnilist = toCatalogAnilist(anilist) || fallbackItem?.anilist || null;
+    const sourceUrl = cleanText(row.source_url) || null;
+    const rowTags = parseHashtags(row.caption);
 
     items.push({
       id: normalizeTitle(displayTitle),
@@ -418,7 +420,7 @@ async function main() {
         `${displayTitle} matched from the source CSV.`,
       source: {
         caption: cleanText(row.caption) || cleanText(fallbackItem?.source?.caption) || null,
-        url: cleanText(row.source_url) || cleanText(fallbackItem?.source?.url) || null,
+        url: sourceUrl,
         imageUrl:
           cleanText(row.cover_image) ||
           cleanText(anilist?.coverImage?.extraLarge) ||
@@ -426,8 +428,8 @@ async function main() {
           cleanText(fallbackItem?.source?.imageUrl) ||
           cleanText(fallbackItem?.anilist?.coverImage) ||
           null,
-        tags: parseHashtags(row.caption).length > 0
-          ? parseHashtags(row.caption)
+        tags: rowTags.length > 0
+          ? rowTags
           : Array.isArray(fallbackItem?.source?.tags)
             ? fallbackItem.source.tags
             : []

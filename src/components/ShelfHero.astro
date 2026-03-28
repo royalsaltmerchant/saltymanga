@@ -7,29 +7,66 @@ interface Props {
 }
 
 const { items } = Astro.props;
-const coverItems = items.slice(0, 3);
+const featuredItem =
+  items.find((item) => item.id === 'the white cat s revenge as plotted from the dragon king s lap') ??
+  items[items.length - 1] ??
+  null;
+const coverItems = [featuredItem, ...items.filter((item) => item.id !== featuredItem?.id).slice(0, 2)].filter(Boolean);
+const genreHighlights = Array.from(new Set(items.flatMap((item) => item.genres))).slice(0, 3);
+const heroParticles = [
+  { x: '8%', y: '14%', size: '0.3rem', alpha: '0.92', blur: '0px', delay: '0s', duration: '7.2s' },
+  { x: '18%', y: '22%', size: '0.42rem', alpha: '0.78', blur: '0px', delay: '0.4s', duration: '8.6s' },
+  { x: '32%', y: '12%', size: '0.28rem', alpha: '0.84', blur: '1px', delay: '1.1s', duration: '6.9s' },
+  { x: '41%', y: '28%', size: '0.5rem', alpha: '0.72', blur: '0px', delay: '0.8s', duration: '9s' },
+  { x: '56%', y: '18%', size: '0.24rem', alpha: '0.9', blur: '1px', delay: '1.7s', duration: '7.8s' },
+  { x: '64%', y: '36%', size: '0.38rem', alpha: '0.7', blur: '0px', delay: '0.2s', duration: '8.8s' },
+  { x: '72%', y: '20%', size: '0.58rem', alpha: '0.64', blur: '1px', delay: '1.4s', duration: '9.6s' },
+  { x: '82%', y: '30%', size: '0.3rem', alpha: '0.88', blur: '0px', delay: '0.6s', duration: '6.8s' },
+  { x: '88%', y: '12%', size: '0.22rem', alpha: '0.82', blur: '0px', delay: '1.9s', duration: '8.1s' },
+  { x: '14%', y: '58%', size: '0.32rem', alpha: '0.62', blur: '1px', delay: '0.9s', duration: '10.2s' },
+  { x: '30%', y: '68%', size: '0.52rem', alpha: '0.58', blur: '1px', delay: '0.1s', duration: '8.9s' },
+  { x: '48%', y: '76%', size: '0.28rem', alpha: '0.74', blur: '0px', delay: '1.5s', duration: '7.5s' },
+  { x: '66%', y: '66%', size: '0.34rem', alpha: '0.68', blur: '1px', delay: '0.7s', duration: '9.4s' },
+  { x: '84%', y: '74%', size: '0.46rem', alpha: '0.54', blur: '0px', delay: '1.2s', duration: '10.6s' }
+];
 ---
 
 <section class="hero-shell" id="top">
   <div class="hero-grid">
     <div class="hero-copy">
+      <p class="hero-overline">Extra Flaky Shelf</p>
       <h1>{siteConfig.name}</h1>
       <p class="hero-intro">{siteConfig.description}</p>
+      <p class="hero-note">Salt-dusted fantasy, strange little crushes, and shelf picks that deserve a paperback spot.</p>
+      <div class="hero-meta" aria-label="Shelf summary">
+        <span>{items.length} shelf picks</span>
+        {genreHighlights.length > 0 && <span>{genreHighlights.join(' / ')}</span>}
+      </div>
       <a class="hero-link" href={siteConfig.instagramUrl} rel="noopener noreferrer" target="_blank">
         <span>Did you find me on Instagram?</span>
         <strong>@{siteConfig.instagramHandle}</strong>
       </a>
     </div>
 
-    <div class="hero-covers" aria-hidden="true">
-      {coverItems.map((item, index) => (
-        <img
-          class:list={['hero-cover', `hero-cover--${index + 1}`]}
-          src={item.source.imageUrl ?? item.anilist?.coverImage ?? undefined}
-          alt=""
-          loading="eager"
-        />
-      ))}
+    <div class="hero-stage">
+      <div class="hero-particles" aria-hidden="true">
+        {heroParticles.map((particle) => (
+          <span
+            style={`--x:${particle.x}; --y:${particle.y}; --size:${particle.size}; --alpha:${particle.alpha}; --blur:${particle.blur}; --delay:${particle.delay}; --duration:${particle.duration};`}
+          />
+        ))}
+      </div>
+
+      <div class="hero-covers" aria-hidden="true">
+        {coverItems.map((item, index) => (
+          <img
+            class:list={['hero-cover', `hero-cover--${index + 1}`]}
+            src={item.source.imageUrl ?? item.anilist?.coverImage ?? undefined}
+            alt=""
+            loading="eager"
+          />
+        ))}
+      </div>
     </div>
   </div>
 </section>
