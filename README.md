@@ -108,4 +108,6 @@ Set these environment variables in Netlify before the first production deploy:
 - `GOOGLE_BOOKS_API_KEY`
 - `SITE_URL`
 
+The default production URL is `https://saltymanga.com`. Override `SITE_URL` only when you need a different canonical site URL.
+
 Production relies on the committed `data/catalog.json`. When you change `data/titles.csv`, run `npm run build:deploy` locally before shipping so Netlify can deploy the refreshed catalog without making network metadata calls during the build.
