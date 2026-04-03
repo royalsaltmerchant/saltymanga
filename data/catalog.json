@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-28T20:06:07.666Z",
+  "generatedAt": "2026-04-03T19:36:39.000Z",
   "source": {
     "mode": "csv",
     "note": "Built from data/titles.csv with AniList/ISBN resolution and fallback to the existing catalog when lookups fail."
@@ -348,6 +348,115 @@
       ],
       "isbn13": "9781975317485",
       "matchConfidence": "low"
+    },
+    {
+      "id": "kamisama kiss",
+      "lookupTitle": "Kamisama Kiss",
+      "title": "Kamisama Kiss",
+      "description": "After her father leaves her homeless, Nanami ends up at a rundown shrine and is mistaken for its new local deity. Between divine duties and a sharp-tongued fox familiar, her ordinary life turns into a supernatural romance.",
+      "source": {
+        "caption": null,
+        "url": "https://www.viz.com/manga-books/manga/kamisama-kiss-volume-1/product/2542",
+        "imageUrl": "https://dynamic.indigoimages.ca/v1/books/books/1421536382/1.jpg",
+        "tags": []
+      },
+      "anilist": {
+        "id": 38157,
+        "url": "https://anilist.co/manga/38157",
+        "score": null,
+        "status": "FINISHED",
+        "format": "MANGA",
+        "volumes": 25,
+        "chapters": null,
+        "coverImage": "https://dynamic.indigoimages.ca/v1/books/books/1421536382/1.jpg"
+      },
+      "genres": [
+        "Comedy",
+        "Fantasy",
+        "Romance",
+        "Supernatural"
+      ],
+      "isbn13": "9781421536385",
+      "matchConfidence": "manual"
+    },
+    {
+      "id": "ghostly things",
+      "lookupTitle": "Ghostly Things",
+      "title": "Ghostly Things",
+      "description": "With her father off overseas, Yachiho moves into a haunted house all by herself and discovers a hidden lower floor full of spirits. To uncover her family's secrets, she has to survive life with a whole mansion of ghostly roommates.",
+      "source": {
+        "caption": null,
+        "url": "https://sevenseasentertainment.com/series/ghostly-things/",
+        "imageUrl": "https://sevenseasentertainment.com/wp-content/uploads/2019/01/GHOSTLY-THINGS-1-coverFRONT.jpg",
+        "tags": []
+      },
+      "anilist": null,
+      "genres": [
+        "Mystery",
+        "Supernatural"
+      ],
+      "isbn13": "9781642757101",
+      "matchConfidence": "manual"
+    },
+    {
+      "id": "dissolving classroom",
+      "lookupTitle": "Dissolving classroom (Junji Ito)",
+      "title": "Dissolving Classroom",
+      "description": "Yuma and Chizumi drift from place to place, leaving curses, obsession, and body horror behind them. This Junji Ito collection turns rumor and cruelty into grotesque supernatural disasters.",
+      "source": {
+        "caption": null,
+        "url": "https://kodansha.us/product/dissolving-classroom/",
+        "imageUrl": "https://dynamic.indigoimages.ca/v1/books/books/1942993854/1.jpg",
+        "tags": []
+      },
+      "anilist": {
+        "id": 88577,
+        "url": "https://anilist.co/manga/88577",
+        "score": null,
+        "status": "FINISHED",
+        "format": "MANGA",
+        "volumes": 1,
+        "chapters": 7,
+        "coverImage": "https://dynamic.indigoimages.ca/v1/books/books/1942993854/1.jpg"
+      },
+      "genres": [
+        "Drama",
+        "Horror",
+        "Supernatural",
+        "Tragedy"
+      ],
+      "isbn13": "9781942993858",
+      "matchConfidence": "manual"
+    },
+    {
+      "id": "gyo",
+      "lookupTitle": "Gyo (Junji Ito)",
+      "title": "Gyo",
+      "description": "A nightmare plague begins with foul-smelling fish crawling onto land on mechanical legs. Junji Ito turns seaside panic into a relentless horror spiral full of rot, obsession, and apocalyptic dread.",
+      "source": {
+        "caption": null,
+        "url": "https://www.viz.com/manga-books/manga/junji-ito/product/3685",
+        "imageUrl": "https://dynamic.indigoimages.ca/v1/books/books/1421579154/1.jpg",
+        "tags": []
+      },
+      "anilist": {
+        "id": 30909,
+        "url": "https://anilist.co/manga/30909",
+        "score": null,
+        "status": "FINISHED",
+        "format": "MANGA",
+        "volumes": 2,
+        "chapters": null,
+        "coverImage": "https://dynamic.indigoimages.ca/v1/books/books/1421579154/1.jpg"
+      },
+      "genres": [
+        "Horror",
+        "Psychological",
+        "Science Fiction",
+        "Thriller"
+      ],
+      "isbn13": "9781421579153",
+      "matchConfidence": "manual"
     }
   ]
 }

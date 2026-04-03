@@ -7,11 +7,16 @@ interface Props {
 }
 
 const { items } = Astro.props;
-const featuredItem =
-  items.find((item) => item.id === 'the white cat s revenge as plotted from the dragon king s lap') ??
-  items[items.length - 1] ??
-  null;
-const coverItems = [featuredItem, ...items.filter((item) => item.id !== featuredItem?.id).slice(0, 2)].filter(Boolean);
+const heroCoverIds = [
+  'kamisama kiss',
+  'dissolving classroom',
+  'the girl with the sanpaku eyes'
+];
+const prioritizedCovers = heroCoverIds
+  .map((id) => items.find((item) => item.id === id))
+  .filter((item): item is CatalogItem => Boolean(item));
+const fallbackCovers = items.filter((item) => !heroCoverIds.includes(item.id));
+const coverItems = [...prioritizedCovers, ...fallbackCovers].slice(0, 3);
 const genreHighlights = Array.from(new Set(items.flatMap((item) => item.genres))).slice(0, 3);
 const heroParticles = [
   { x: '8%', y: '14%', size: '0.3rem', alpha: '0.92', blur: '0px', delay: '0s', duration: '7.2s' },
