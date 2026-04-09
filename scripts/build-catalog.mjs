@@ -1,7 +1,6 @@
 import fs from 'node:fs';
 import {
   cleanText,
-  initEnv,
   normalizeTitle,
   parseHashtags,
   sleep,
@@ -9,31 +8,7 @@ import {
   writeJson
 } from './_shared.mjs';
 
-initEnv();
-
 const anilistEndpoint = 'https://graphql.anilist.co';
-const googleBooksApiKey = cleanText(process.env.GOOGLE_BOOKS_API_KEY);
-
-function buildBookSearchQueries(title) {
-  const searchTerms = [
-    `"${title}" "volume 1" manga`,
-    `"${title}" "vol 1" manga`,
-    `"${title}" 1 manga`,
-    `"${title}" manga`
-  ];
-
-  return searchTerms.map((searchTerm) => {
-    const query = new URL('https://www.googleapis.com/books/v1/volumes');
-    query.searchParams.set('q', searchTerm);
-    query.searchParams.set('printType', 'books');
-    query.searchParams.set('orderBy', 'relevance');
-    query.searchParams.set('maxResults', '8');
-    if (googleBooksApiKey) {
-      query.searchParams.set('key', googleBooksApiKey);
-    }
-    return query;
-  });
-}
 
 async function fetchJson(url, options = {}, attempt = 0) {
   const response = await fetch(url, options);
@@ -147,128 +122,6 @@ async function resolveAniListMatch(searchTerm) {
   }
 
   return ranked[0].media;
-}
-
-function extractIsbn13(volumeInfo) {
-  const identifiers = volumeInfo?.industryIdentifiers ?? [];
-  const isbn13 = identifiers.find((entry) => entry?.type === 'ISBN_13')?.identifier ?? null;
-  const digits = String(isbn13 ?? '').replace(/\D/g, '');
-  return digits.length === 13 ? digits : null;
-}
-
-function extractBookshopIsbn13(value) {
-  const source = cleanText(value);
-  const match = source.match(/\/a\/[^/?#]+\/(\d{13})(?:[/?#]|$)/i) ?? source.match(/\b(\d{13})\b/);
-  return match?.[1] ?? null;
-}
-
-function normalizeSeriesTitle(value) {
-  return normalizeTitle(value)
-    .replace(/\b(volume|vol|book|part|manga)\b/g, ' ')
-    .replace(/\b(omnibus|deluxe|collector|edition|complete|box|set)\b/g, ' ')
-    .replace(/\b\d+\b/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
-function extractVolumeNumber(value) {
-  const source = String(value ?? '');
-  const patterns = [
-    /\b(?:vol(?:ume)?|book|part)\.?\s*(\d{1,3})\b/i,
-    /\b(\d{1,3})\b(?=\s*(?:$|[:\-]))/
-  ];
-
-  for (const pattern of patterns) {
-    const match = source.match(pattern);
-    if (match) {
-      const parsed = Number.parseInt(match[1], 10);
-      if (Number.isFinite(parsed)) {
-        return parsed;
-      }
-    }
-  }
-
-  return null;
-}
-
-function scoreGoogleBook(searchTerm, item) {
-  const volumeInfo = item?.volumeInfo ?? {};
-  const rawTitle = cleanText(volumeInfo.title);
-  const rawSubtitle = cleanText(volumeInfo.subtitle);
-  const combinedTitle = `${rawTitle} ${rawSubtitle}`.trim();
-  const seriesTitle = normalizeSeriesTitle(combinedTitle || rawTitle);
-  const search = normalizeSeriesTitle(searchTerm);
-  if (!seriesTitle || !search) {
-    return -1;
-  }
-
-  let score = 0;
-
-  if (seriesTitle === search) {
-    score += 10;
-  } else if (seriesTitle.includes(search) || search.includes(seriesTitle)) {
-    score += 7;
-  } else {
-    const searchTokens = new Set(search.split(' ').filter(Boolean));
-    const titleTokens = new Set(seriesTitle.split(' ').filter(Boolean));
-    const overlap = [...searchTokens].filter((token) => titleTokens.has(token)).length;
-    score += overlap / Math.max(searchTokens.size, titleTokens.size, 1);
-  }
-
-  const volumeNumber = extractVolumeNumber(combinedTitle || rawTitle);
-  if (volumeNumber === 1) {
-    score += 6;
-  } else if (volumeNumber != null) {
-    score -= Math.min(volumeNumber, 5);
-  }
-
-  const categories = Array.isArray(volumeInfo.categories) ? volumeInfo.categories.join(' ').toLowerCase() : '';
-  if (categories.includes('manga') || categories.includes('comics') || categories.includes('graphic novels')) {
-    score += 1.5;
-  }
-
-  const editionText = `${rawTitle} ${rawSubtitle}`.toLowerCase();
-  if (/\b(omnibus|collector|deluxe|complete|box set)\b/.test(editionText)) {
-    score -= 3;
-  }
-
-  if (extractIsbn13(volumeInfo)) {
-    score += 1;
-  }
-
-  return score;
-}
-
-async function resolveIsbn13(searchTerm) {
-  const items = [];
-
-  for (const query of buildBookSearchQueries(searchTerm)) {
-    try {
-      const payload = await fetchJson(query);
-      items.push(...(payload.items ?? []));
-    } catch (error) {
-      console.warn(`ISBN lookup skipped for "${searchTerm}": ${error instanceof Error ? error.message : error}`);
-    }
-  }
-
-  const deduped = [...new Map(
-    items.map((item) => {
-      const volumeInfo = item?.volumeInfo ?? {};
-      const key = extractIsbn13(volumeInfo) || `${cleanText(volumeInfo.title)}::${cleanText(volumeInfo.subtitle)}`;
-      return [key, item];
-    })
-  ).values()];
-
-  const matches = deduped
-    .map((item) => ({
-      item,
-      score: scoreGoogleBook(searchTerm, item),
-      isbn13: extractIsbn13(item.volumeInfo)
-    }))
-    .filter((entry) => entry.isbn13 && entry.score >= 7)
-    .sort((left, right) => right.score - left.score);
-
-  return matches[0]?.isbn13 ?? null;
 }
 
 function pickDisplayTitle(media, fallback) {
@@ -400,11 +253,9 @@ async function main() {
       await sleep(350);
     }
 
-    const manualIsbn13 = cleanText(row.isbn13) || extractBookshopIsbn13(row.bookshop_url);
-    const isbn13 = manualIsbn13 || (title ? await resolveIsbn13(title) : null) || fallbackItem?.isbn13 || null;
-
     const displayTitle = pickDisplayTitle(anilist, cleanText(fallbackItem?.title) || title);
     const catalogAnilist = toCatalogAnilist(anilist) || fallbackItem?.anilist || null;
+    const bookshopUrl = cleanText(row.bookshop_url) || cleanText(fallbackItem?.bookshopUrl) || null;
     const sourceUrl = cleanText(row.source_url) || null;
     const rowTags = parseHashtags(row.caption);
 
@@ -434,13 +285,13 @@ async function main() {
             ? fallbackItem.source.tags
             : []
       },
+      bookshopUrl,
       anilist: catalogAnilist,
       genres: Array.isArray(anilist?.genres)
         ? anilist.genres.filter(Boolean).slice(0, 4)
         : Array.isArray(fallbackItem?.genres)
           ? fallbackItem.genres
           : [],
-      isbn13,
       matchConfidence: anilist ? 'high' : cleanText(fallbackItem?.matchConfidence) || 'low'
     });
 
@@ -451,7 +302,7 @@ async function main() {
     generatedAt: new Date().toISOString(),
     source: {
       mode: 'csv',
-      note: 'Built from data/titles.csv with AniList/ISBN resolution and fallback to the existing catalog when lookups fail.'
+      note: 'Built from data/titles.csv with AniList enrichment and manual Bookshop/source links.'
     },
     items
   });

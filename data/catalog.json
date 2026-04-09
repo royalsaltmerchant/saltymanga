@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-04-03T19:36:39.000Z",
+  "generatedAt": "2026-04-09T16:10:52.678Z",
   "source": {
     "mode": "csv",
-    "note": "Built from data/titles.csv with AniList/ISBN resolution and fallback to the existing catalog when lookups fail."
+    "note": "Built from data/titles.csv with AniList enrichment and manual Bookshop/source links."
   },
   "items": [
     {
@@ -16,6 +16,7 @@
         "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx97852-M7vlc2OGR2gp.jpg",
         "tags": []
       },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781974707126",
       "anilist": {
         "id": 97852,
         "url": "https://anilist.co/manga/97852",
@@ -31,7 +32,6 @@
         "Romance",
         "Slice of Life"
       ],
-      "isbn13": "9781974707126",
       "matchConfidence": "high"
     },
     {
@@ -45,6 +45,7 @@
         "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/nx101233-ipG2rYitNxyd.jpg",
         "tags": []
       },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781974709403",
       "anilist": {
         "id": 101233,
         "url": "https://anilist.co/manga/101233",
@@ -59,7 +60,6 @@
         "Comedy",
         "Slice of Life"
       ],
-      "isbn13": "9781974709403",
       "matchConfidence": "high"
     },
     {
@@ -73,6 +73,7 @@
         "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx105097-nMpc8bjBeuXE.jpg",
         "tags": []
       },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781975317577",
       "anilist": {
         "id": 105097,
         "url": "https://anilist.co/manga/105097",
@@ -89,7 +90,6 @@
         "Slice of Life",
         "Supernatural"
       ],
-      "isbn13": "9781975317577",
       "matchConfidence": "high"
     },
     {
@@ -103,6 +103,7 @@
         "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx122649-CzRqsZ4Cclx9.jpg",
         "tags": []
       },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781975377830",
       "anilist": {
         "id": 122649,
         "url": "https://anilist.co/manga/122649",
@@ -119,7 +120,6 @@
         "Slice of Life",
         "Supernatural"
       ],
-      "isbn13": "9781975377830",
       "matchConfidence": "high"
     },
     {
@@ -133,6 +133,7 @@
         "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/nx103184-otHs1iKcsUu5.jpg",
         "tags": []
       },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781634429580",
       "anilist": {
         "id": 103184,
         "url": "https://anilist.co/manga/103184",
@@ -148,7 +149,6 @@
         "Romance",
         "Slice of Life"
       ],
-      "isbn13": "9781634429580",
       "matchConfidence": "high"
     },
     {
@@ -162,6 +162,7 @@
         "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx127554-qXczrBrFMXBM.jpg",
         "tags": []
       },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781974729845",
       "anilist": {
         "id": 127554,
         "url": "https://anilist.co/manga/127554",
@@ -178,7 +179,6 @@
         "Comedy",
         "Supernatural"
       ],
-      "isbn13": "9781974729845",
       "matchConfidence": "high"
     },
     {
@@ -192,6 +192,7 @@
         "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx30688-vhFGM9jUcGrU.png",
         "tags": []
       },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781974711871",
       "anilist": {
         "id": 30688,
         "url": "https://anilist.co/manga/30688",
@@ -208,7 +209,6 @@
         "Romance",
         "Slice of Life"
       ],
-      "isbn13": "9781974711871",
       "matchConfidence": "high"
     },
     {
@@ -222,6 +222,7 @@
         "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx107282-ZzzqzHRZShT6.png",
         "tags": []
       },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781646511754",
       "anilist": {
         "id": 107282,
         "url": "https://anilist.co/manga/107282",
@@ -237,7 +238,6 @@
         "Romance",
         "Slice of Life"
       ],
-      "isbn13": "9781646511754",
       "matchConfidence": "high"
     },
     {
@@ -251,6 +251,7 @@
         "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx125555-0ne9g0sOTDwd.png",
         "tags": []
       },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781648278860",
       "anilist": {
         "id": 125555,
         "url": "https://anilist.co/manga/125555",
@@ -266,7 +267,6 @@
         "Fantasy",
         "Slice of Life"
       ],
-      "isbn13": "9781648278860",
       "matchConfidence": "high"
     },
     {
@@ -280,6 +280,7 @@
         "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx34632-5xMDkx3pXsEh.png",
         "tags": []
       },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781421586205",
       "anilist": {
         "id": 34632,
         "url": "https://anilist.co/manga/34632",
@@ -295,7 +296,6 @@
         "Psychological",
         "Slice of Life"
       ],
-      "isbn13": "9781421586205",
       "matchConfidence": "high"
     },
     {
@@ -309,6 +309,7 @@
         "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx52986-xWy27RsyqkXW.jpg",
         "tags": []
       },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781974703623",
       "anilist": {
         "id": 52986,
         "url": "https://anilist.co/manga/52986",
@@ -325,7 +326,6 @@
         "Fantasy",
         "Romance"
       ],
-      "isbn13": "9781974703623",
       "matchConfidence": "high"
     },
     {
@@ -339,36 +339,44 @@
         "imageUrl": "https://images.yenpress.com/imgs/9781975317485.jpg?h=612&s=3460a18058ac1c840251fe9d3c501538&type=books&w=408",
         "tags": []
       },
-      "anilist": null,
+      "bookshopUrl": "https://bookshop.org/a/122519/9781975317485",
+      "anilist": {
+        "id": 114068,
+        "url": "https://anilist.co/manga/114068",
+        "score": 62,
+        "status": "RELEASING",
+        "format": "NOVEL",
+        "volumes": null,
+        "chapters": null,
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx114068-QCbDjsXenoEo.jpg"
+      },
       "genres": [
-        "Drama",
         "Fantasy",
-        "Romance",
-        "Isekai"
+        "Romance"
       ],
-      "isbn13": "9781975317485",
-      "matchConfidence": "low"
+      "matchConfidence": "high"
     },
     {
       "id": "kamisama kiss",
       "lookupTitle": "Kamisama Kiss",
       "title": "Kamisama Kiss",
-      "description": "After her father leaves her homeless, Nanami ends up at a rundown shrine and is mistaken for its new local deity. Between divine duties and a sharp-tongued fox familiar, her ordinary life turns into a supernatural romance.",
+      "description": "After her father leaves her homeless Nanami ends up at a rundown shrine and is mistaken for its new local deity. Between divine duties and a sharp-tongued fox familiar her ordinary life turns into a supernatural romance.",
       "source": {
         "caption": null,
         "url": "https://www.viz.com/manga-books/manga/kamisama-kiss-volume-1/product/2542",
         "imageUrl": "https://dynamic.indigoimages.ca/v1/books/books/1421536382/1.jpg",
         "tags": []
       },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781421536385",
       "anilist": {
         "id": 38157,
         "url": "https://anilist.co/manga/38157",
-        "score": null,
+        "score": 84,
         "status": "FINISHED",
         "format": "MANGA",
         "volumes": 25,
-        "chapters": null,
-        "coverImage": "https://dynamic.indigoimages.ca/v1/books/books/1421536382/1.jpg"
+        "chapters": 154,
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx38157-CCtYXzoNb2bc.jpg"
       },
       "genres": [
         "Comedy",
@@ -376,39 +384,49 @@
         "Romance",
         "Supernatural"
       ],
-      "isbn13": "9781421536385",
-      "matchConfidence": "manual"
+      "matchConfidence": "high"
     },
     {
       "id": "ghostly things",
       "lookupTitle": "Ghostly Things",
       "title": "Ghostly Things",
-      "description": "With her father off overseas, Yachiho moves into a haunted house all by herself and discovers a hidden lower floor full of spirits. To uncover her family's secrets, she has to survive life with a whole mansion of ghostly roommates.",
+      "description": "With her father off overseas Yachiho moves into a haunted house all by herself and discovers a hidden lower floor full of spirits. To uncover her family's secrets she has to survive life with a whole mansion of ghostly roommates.",
       "source": {
         "caption": null,
         "url": "https://sevenseasentertainment.com/series/ghostly-things/",
         "imageUrl": "https://sevenseasentertainment.com/wp-content/uploads/2019/01/GHOSTLY-THINGS-1-coverFRONT.jpg",
         "tags": []
       },
-      "anilist": null,
+      "bookshopUrl": "https://bookshop.org/a/122519/9781642757101",
+      "anilist": {
+        "id": 102217,
+        "url": "https://anilist.co/manga/102217",
+        "score": 60,
+        "status": "FINISHED",
+        "format": "MANGA",
+        "volumes": 3,
+        "chapters": 21,
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/nx102217-KHIwqP5YrmJu.jpg"
+      },
       "genres": [
-        "Mystery",
+        "Drama",
+        "Fantasy",
         "Supernatural"
       ],
-      "isbn13": "9781642757101",
-      "matchConfidence": "manual"
+      "matchConfidence": "high"
     },
     {
       "id": "dissolving classroom",
       "lookupTitle": "Dissolving classroom (Junji Ito)",
       "title": "Dissolving Classroom",
-      "description": "Yuma and Chizumi drift from place to place, leaving curses, obsession, and body horror behind them. This Junji Ito collection turns rumor and cruelty into grotesque supernatural disasters.",
+      "description": "Yuma and Chizumi drift from place to place leaving curses obsession and body horror behind them. This Junji Ito collection turns rumor and cruelty into grotesque supernatural disasters.",
       "source": {
         "caption": null,
         "url": "https://kodansha.us/product/dissolving-classroom/",
         "imageUrl": "https://dynamic.indigoimages.ca/v1/books/books/1942993854/1.jpg",
         "tags": []
       },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781942993858",
       "anilist": {
         "id": 88577,
         "url": "https://anilist.co/manga/88577",
@@ -425,20 +443,20 @@
         "Supernatural",
         "Tragedy"
       ],
-      "isbn13": "9781942993858",
       "matchConfidence": "manual"
     },
     {
       "id": "gyo",
       "lookupTitle": "Gyo (Junji Ito)",
       "title": "Gyo",
-      "description": "A nightmare plague begins with foul-smelling fish crawling onto land on mechanical legs. Junji Ito turns seaside panic into a relentless horror spiral full of rot, obsession, and apocalyptic dread.",
+      "description": "A nightmare plague begins with foul-smelling fish crawling onto land on mechanical legs. Junji Ito turns seaside panic into a relentless horror spiral full of rot obsession and apocalyptic dread.",
       "source": {
         "caption": null,
         "url": "https://www.viz.com/manga-books/manga/junji-ito/product/3685",
         "imageUrl": "https://dynamic.indigoimages.ca/v1/books/books/1421579154/1.jpg",
         "tags": []
       },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781421579153",
       "anilist": {
         "id": 30909,
         "url": "https://anilist.co/manga/30909",
@@ -455,8 +473,126 @@
         "Science Fiction",
         "Thriller"
       ],
-      "isbn13": "9781421579153",
       "matchConfidence": "manual"
+    },
+    {
+      "id": "kaguya sama love is war",
+      "lookupTitle": "Kaguya-sama: Love Is War",
+      "title": "Kaguya-sama: Love is War",
+      "description": "As leaders of their prestigious academy’s student council, Kaguya and Miyuki are the elite of the elite! But it’s lonely at the top… Luckily for them, they’ve fallen in love! There’s just one problem—they both have too much pride to admit it. And so begins the daily scheming to get the object of their affection to confess their romantic feelings first… Love is a war you win by losing. (Source: VIZ Media) Notes: - The first 10 chapters were published in Monthly Miracle Jump. It switched to Weekly Young Jump starting with Ch. 11, with the chapter count being reset. This entry still includes the first 10 chapters from Miracle Jump. - Winner of the 65th Shogakukan Manga Award for \"Best General Manga\" category in 2019.",
+      "source": {
+        "caption": null,
+        "url": null,
+        "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx86635-EdaLQmsn86Fy.png",
+        "tags": []
+      },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781974700301",
+      "anilist": {
+        "id": 86635,
+        "url": "https://anilist.co/manga/86635",
+        "score": 87,
+        "status": "FINISHED",
+        "format": "MANGA",
+        "volumes": 28,
+        "chapters": 281,
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx86635-EdaLQmsn86Fy.png"
+      },
+      "genres": [
+        "Comedy",
+        "Psychological",
+        "Romance",
+        "Slice of Life"
+      ],
+      "matchConfidence": "high"
+    },
+    {
+      "id": "chobits",
+      "lookupTitle": "Chobits",
+      "title": "Chobits",
+      "description": "After moving from the countryside into the big city, poor college student Hideki Motosuwa finds himself down on his luck. All he wants is a good job, a girlfriend, and his very own “persocom” - the latest and greatest in humanoid computer technology. Hideki’s luck changes one night when he finds Chi - an adorable, but seemingly broken, persocom thrown out in a pile of trash. After taking her home, Hideki discovers that Chi is more responsibility than he expected - and that there’s much more to his cute new persocom than meets the eye. (Source: Kodansha USA)",
+      "source": {
+        "caption": null,
+        "url": null,
+        "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx30107-UAERGstOOuAh.jpg",
+        "tags": []
+      },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781632368164",
+      "anilist": {
+        "id": 30107,
+        "url": "https://anilist.co/manga/30107",
+        "score": 75,
+        "status": "FINISHED",
+        "format": "MANGA",
+        "volumes": 8,
+        "chapters": 88,
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx30107-UAERGstOOuAh.jpg"
+      },
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Psychological",
+        "Romance"
+      ],
+      "matchConfidence": "high"
+    },
+    {
+      "id": "frieren beyond journey s end",
+      "lookupTitle": "Frieren: Beyond Journey's End",
+      "title": "Frieren: Beyond Journey’s End",
+      "description": "The adventure is over but life goes on for an elf mage just beginning to learn what living is all about. Elf mage Frieren and her courageous fellow adventurers have defeated the Demon King and brought peace to the land. With the great struggle over, they all go their separate ways to live a quiet life. But as an elf, Frieren, nearly immortal, will long outlive the rest of her former party. How will she come to terms with the mortality of her friends? How can she find fulfillment in her own life, and can she learn to understand what life means to the humans around her? Frieren begins a new journey to find the answer. (Source: VIZ Media) Notes: - Winner of the Grand Prize at the 14th Manga Taisho Awards. - Nominated for the 25th Annual Tezuka Osamu Cultural Prize. - Placed 3rd at the 7th Annual Next Manga Award.",
+      "source": {
+        "caption": null,
+        "url": null,
+        "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx118586-CXKgWikBFQgS.jpg",
+        "tags": []
+      },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781974725762",
+      "anilist": {
+        "id": 118586,
+        "url": "https://anilist.co/manga/118586",
+        "score": 87,
+        "status": "RELEASING",
+        "format": "MANGA",
+        "volumes": null,
+        "chapters": null,
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx118586-CXKgWikBFQgS.jpg"
+      },
+      "genres": [
+        "Adventure",
+        "Drama",
+        "Fantasy"
+      ],
+      "matchConfidence": "high"
+    },
+    {
+      "id": "noragami stray god",
+      "lookupTitle": "Noragami",
+      "title": "Noragami: Stray God",
+      "description": "Yato is a homeless god. He doesn’t even have a shrine, not to mention worshippers! So to achieve his ambitious goals, he’s set up a service to help those in need (for a small fee), hoping he’ll eventually raise enough money to build himself the lavish temple of his dreams. Of course, he can’t afford to be picky, so Yato accepts all kinds of jobs, from finding lost kittens to helping a student overcome bullies at school. (Source: Kodansha USA)",
+      "source": {
+        "caption": null,
+        "url": null,
+        "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx54692-3vWUzvrCyArN.png",
+        "tags": []
+      },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781612629063",
+      "anilist": {
+        "id": 54692,
+        "url": "https://anilist.co/manga/54692",
+        "score": 82,
+        "status": "FINISHED",
+        "format": "MANGA",
+        "volumes": 27,
+        "chapters": 109,
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx54692-3vWUzvrCyArN.png"
+      },
+      "genres": [
+        "Action",
+        "Adventure",
+        "Drama",
+        "Romance"
+      ],
+      "matchConfidence": "high"
     }
   ]
 }

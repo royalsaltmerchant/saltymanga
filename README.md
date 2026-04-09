@@ -1,12 +1,12 @@
 # SaltyManga
 
-SaltyManga is a one-page Astro site that turns a simple CSV of manga titles into a browsable shelf with AniList metadata and Bookshop affiliate buy links.
+SaltyManga is a one-page Astro site that turns a simple CSV of manga titles into a browsable shelf with AniList metadata and manual Bookshop buy links.
 
 ## What It Does
 
 - reads a minimal CSV of manga titles
 - enriches each title with AniList metadata
-- resolves ISBN-13 where possible
+- uses manual Bookshop links from the CSV when you have them
 - renders a static single-page shelf for Netlify
 
 ## Project Layout
@@ -16,7 +16,7 @@ SaltyManga is a one-page Astro site that turns a simple CSV of manga titles into
 - `data/catalog.json`
   The built shelf catalog consumed by the frontend.
 - `scripts/build-catalog.mjs`
-  Reads `titles.csv`, matches titles to AniList, resolves ISBN-13, and writes the catalog.
+  Reads `titles.csv`, matches titles to AniList, and writes the catalog.
 - `src/pages/index.astro`
   Single-page frontend.
 
@@ -30,13 +30,8 @@ npm run dev
 
 ## Environment
 
-Required:
-
-- `PUBLIC_BOOKSHOP_AFFILIATE_ID`
-
 Optional:
 
-- `GOOGLE_BOOKS_API_KEY`
 - `SITE_URL`
 
 ## Refresh Flow
@@ -78,21 +73,15 @@ Yotsuba&!
 Optional columns supported by the builder:
 
 ```csv
-title,source_url,caption,notes,isbn13,bookshop_url,cover_image
-Delicious in Dungeon,https://example.com/post,Still one of the easiest fantasy recs to hand someone.,,,https://bookshop.org/a/123/9780123456789,https://example.com/cover.jpg
+title,source_url,caption,notes,bookshop_url,cover_image
+Delicious in Dungeon,https://example.com/post,Still one of the easiest fantasy recs to hand someone.,,https://bookshop.org/a/123/9780123456789,https://example.com/cover.jpg
 ```
 
 Replace the CSV rows with your real titles, run the refresh flow, and the site will rebuild from that list.
 
 ## Bookshop Links
 
-Bookshop links are generated from the affiliate id plus ISBN-13 using:
-
-```text
-https://bookshop.org/a/{affiliate_id}/{isbn13}
-```
-
-That means the site only needs a valid ISBN-13 per manga entry rather than a hand-collected Bookshop product URL for every card.
+Bookshop links are manual. Add the exact product URL you want in `bookshop_url`. If a row has no `bookshop_url`, the card simply renders without a buy button.
 
 ## Netlify
 
@@ -104,8 +93,6 @@ This repo is configured for Netlify in `netlify.toml`.
 
 Set these environment variables in Netlify before the first production deploy:
 
-- `PUBLIC_BOOKSHOP_AFFILIATE_ID`
-- `GOOGLE_BOOKS_API_KEY`
 - `SITE_URL`
 
 The default production URL is `https://saltymanga.com`. Override `SITE_URL` only when you need a different canonical site URL.

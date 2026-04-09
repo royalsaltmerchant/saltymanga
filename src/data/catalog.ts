@@ -12,6 +12,7 @@ export interface CatalogItem {
     imageUrl: string | null;
     tags: string[];
   };
+  bookshopUrl: string | null;
   anilist: {
     id: number;
     url: string | null;
@@ -23,7 +24,6 @@ export interface CatalogItem {
     coverImage: string | null;
   } | null;
   genres: string[];
-  isbn13: string | null;
   matchConfidence: 'high' | 'medium' | 'low' | string;
 }
 
