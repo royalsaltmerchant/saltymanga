@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-09T16:10:52.678Z",
+  "generatedAt": "2026-04-11T01:55:26.703Z",
   "source": {
     "mode": "csv",
     "note": "Built from data/titles.csv with AniList enrichment and manual Bookshop/source links."
@@ -591,6 +591,36 @@
         "Adventure",
         "Drama",
         "Romance"
+      ],
+      "matchConfidence": "high"
+    },
+    {
+      "id": "omori",
+      "lookupTitle": "OMORI",
+      "title": "OMORI",
+      "description": "After—something—changed his life four years ago, Sunny has not left his house once, living in his own reclusive bubble. Hoping for a fresh start for her son, his mother decides to move their family out of town. However, when his childhood friend Kel re-enters his life, Sunny finds himself thrust back into a world he once knew. With only three days before the move, the duo come across familiar faces as they go through town—reawakening a dark past that Sunny has tried so hard to forget. (Source: K Manga)",
+      "source": {
+        "caption": null,
+        "url": null,
+        "imageUrl": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx171695-L87NLWyHdnt0.jpg",
+        "tags": []
+      },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781647295691",
+      "anilist": {
+        "id": 171695,
+        "url": "https://anilist.co/manga/171695",
+        "score": 69,
+        "status": "RELEASING",
+        "format": "MANGA",
+        "volumes": null,
+        "chapters": null,
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx171695-L87NLWyHdnt0.jpg"
+      },
+      "genres": [
+        "Adventure",
+        "Drama",
+        "Horror",
+        "Psychological"
       ],
       "matchConfidence": "high"
     }

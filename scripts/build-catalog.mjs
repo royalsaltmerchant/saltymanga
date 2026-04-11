@@ -264,9 +264,9 @@ async function main() {
       lookupTitle: title,
       title: displayTitle,
       description:
-        cleanText(stripHtml(anilist?.description)) ||
         cleanText(row.notes) ||
         cleanText(row.caption) ||
+        cleanText(stripHtml(anilist?.description)) ||
         cleanText(fallbackItem?.description) ||
         `${displayTitle} matched from the source CSV.`,
       source: {
