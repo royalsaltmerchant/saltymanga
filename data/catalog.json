@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-11T01:55:26.703Z",
+  "generatedAt": "2026-09-07T00:05:10.943Z",
   "source": {
     "mode": "csv",
     "note": "Built from data/titles.csv with AniList enrichment and manual Bookshop/source links."
@@ -329,34 +329,6 @@
       "matchConfidence": "high"
     },
     {
-      "id": "the white cat s revenge as plotted from the dragon king s lap",
-      "lookupTitle": "The White Cat's Revenge as Plotted from the Dragon King's Lap",
-      "title": "The White Cat's Revenge as Plotted from the Dragon King's Lap",
-      "description": "Ruri just can't get away from Asahi. Her clingy, oblivious childhood friend is beloved by everyone, leaving Ruri to deal with resentment and jealousy from Asahi's groupies. When Asahi is summoned to another world to be its \"Priestess Princess,\" Ruri is dragged along too and exiled to the woods as a traitor. Away from Asahi's shadow at last, she may find that this new world is the perfect place for a new beginning. (Source: Yen Press)",
-      "source": {
-        "caption": null,
-        "url": null,
-        "imageUrl": "https://images.yenpress.com/imgs/9781975317485.jpg?h=612&s=3460a18058ac1c840251fe9d3c501538&type=books&w=408",
-        "tags": []
-      },
-      "bookshopUrl": "https://bookshop.org/a/122519/9781975317485",
-      "anilist": {
-        "id": 114068,
-        "url": "https://anilist.co/manga/114068",
-        "score": 62,
-        "status": "RELEASING",
-        "format": "NOVEL",
-        "volumes": null,
-        "chapters": null,
-        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx114068-QCbDjsXenoEo.jpg"
-      },
-      "genres": [
-        "Fantasy",
-        "Romance"
-      ],
-      "matchConfidence": "high"
-    },
-    {
       "id": "kamisama kiss",
       "lookupTitle": "Kamisama Kiss",
       "title": "Kamisama Kiss",
@@ -382,35 +354,6 @@
         "Comedy",
         "Fantasy",
         "Romance",
-        "Supernatural"
-      ],
-      "matchConfidence": "high"
-    },
-    {
-      "id": "ghostly things",
-      "lookupTitle": "Ghostly Things",
-      "title": "Ghostly Things",
-      "description": "With her father off overseas Yachiho moves into a haunted house all by herself and discovers a hidden lower floor full of spirits. To uncover her family's secrets she has to survive life with a whole mansion of ghostly roommates.",
-      "source": {
-        "caption": null,
-        "url": "https://sevenseasentertainment.com/series/ghostly-things/",
-        "imageUrl": "https://sevenseasentertainment.com/wp-content/uploads/2019/01/GHOSTLY-THINGS-1-coverFRONT.jpg",
-        "tags": []
-      },
-      "bookshopUrl": "https://bookshop.org/a/122519/9781642757101",
-      "anilist": {
-        "id": 102217,
-        "url": "https://anilist.co/manga/102217",
-        "score": 60,
-        "status": "FINISHED",
-        "format": "MANGA",
-        "volumes": 3,
-        "chapters": 21,
-        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/nx102217-KHIwqP5YrmJu.jpg"
-      },
-      "genres": [
-        "Drama",
-        "Fantasy",
         "Supernatural"
       ],
       "matchConfidence": "high"
@@ -623,6 +566,66 @@
         "Psychological"
       ],
       "matchConfidence": "high"
+    },
+    {
+      "id": "persona 5",
+      "lookupTitle": "Persona 5",
+      "title": "Persona 5",
+      "description": "After being arrested and sent to a new high school in Tokyo, Akira Kurusu awakens to the power of Persona and joins the Phantom Thieves to confront the twisted desires around them.",
+      "source": {
+        "caption": null,
+        "url": "https://www.viz.com/manga-books/manga/persona-5-volume-1/product/6153",
+        "imageUrl": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781974711758/persona-5-vol-1-9781974711758_hr.jpg",
+        "tags": []
+      },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781974711758",
+      "anilist": {
+        "id": 98652,
+        "url": "https://anilist.co/manga/98652",
+        "score": 73,
+        "status": "RELEASING",
+        "format": "MANGA",
+        "volumes": null,
+        "chapters": null,
+        "coverImage": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781974711758/persona-5-vol-1-9781974711758_hr.jpg"
+      },
+      "genres": [
+        "Action",
+        "Drama",
+        "Mystery",
+        "Supernatural"
+      ],
+      "matchConfidence": "high"
+    },
+    {
+      "id": "yorha pearl harbor descent record a nier automata story",
+      "lookupTitle": "YoRHa - Pearl Harbor Descent Record - A NieR:Automata Story",
+      "title": "YoRHa - Pearl Harbor Descent Record - A NieR:Automata Story",
+      "description": "In the distant future, machine lifeforms have driven humanity to the Moon. The Council of Humanity deploys the female android unit YoRHa to Earth, where they fight to recapture the planet in a story set in the world of NieR:Automata.",
+      "source": {
+        "caption": null,
+        "url": "https://squareenixmangaandbooks.square-enix-games.com/en-us/product/9781646091812",
+        "imageUrl": "https://fyre.cdn.sewest.net/manga-books/620cd7349696ff00121e8739/cover_img_247x350_yorha-pearlharbordescentrecord_01_coverfinal-bHZCM6xwR.jpg?quality=85&width=768",
+        "tags": []
+      },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781646091812",
+      "anilist": {
+        "id": 127809,
+        "url": "https://anilist.co/manga/127809",
+        "score": null,
+        "status": "FINISHED",
+        "format": "MANGA",
+        "volumes": 4,
+        "chapters": 18,
+        "coverImage": "https://fyre.cdn.sewest.net/manga-books/620cd7349696ff00121e8739/cover_img_247x350_yorha-pearlharbordescentrecord_01_coverfinal-bHZCM6xwR.jpg?quality=85&width=768"
+      },
+      "genres": [
+        "Action",
+        "Adventure",
+        "Drama",
+        "Science Fiction"
+      ],
+      "matchConfidence": "manual"
     }
   ]
 }
