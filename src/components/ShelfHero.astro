@@ -17,7 +17,6 @@ const prioritizedCovers = heroCoverIds
   .filter((item): item is CatalogItem => Boolean(item));
 const fallbackCovers = items.filter((item) => !heroCoverIds.includes(item.id));
 const coverItems = [...prioritizedCovers, ...fallbackCovers].slice(0, 3);
-const genreHighlights = Array.from(new Set(items.flatMap((item) => item.genres))).slice(0, 3);
 const heroParticles = [
   { x: '8%', y: '14%', size: '0.3rem', alpha: '0.92', blur: '0px', delay: '0s', duration: '7.2s' },
   { x: '18%', y: '22%', size: '0.42rem', alpha: '0.78', blur: '0px', delay: '0.4s', duration: '8.6s' },
@@ -39,14 +38,9 @@ const heroParticles = [
 <section class="hero-shell" id="top">
   <div class="hero-grid">
     <div class="hero-copy">
-      <p class="hero-overline">Extra Flaky Shelf</p>
       <h1>{siteConfig.name}</h1>
       <p class="hero-intro">{siteConfig.description}</p>
-      <p class="hero-note">Salt-dusted fantasy, strange little crushes, and shelf picks that deserve a paperback spot.</p>
-      <div class="hero-meta" aria-label="Shelf summary">
-        <span>{items.length} shelf picks</span>
-        {genreHighlights.length > 0 && <span>{genreHighlights.join(' / ')}</span>}
-      </div>
+      <p class="hero-note">These are series I recommend. I've been a manga enthusiast for 20+ years and still gravitate toward similar titles. The manga here is either recent reads, classics, or series I'm getting interested in.</p>
       <a class="hero-link" href={siteConfig.instagramUrl} rel="noopener noreferrer" target="_blank">
         <span>Did you find me on Instagram?</span>
         <strong>@{siteConfig.instagramHandle}</strong>

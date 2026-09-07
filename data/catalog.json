@@ -626,6 +626,125 @@
         "Science Fiction"
       ],
       "matchConfidence": "manual"
+    },
+    {
+      "id": "rurouni kenshin",
+      "lookupTitle": "Rurouni Kenshin",
+      "title": "Rurouni Kenshin",
+      "description": "Himura Kenshin was once a feared assassin in the final years of the Bakumatsu. Now he wanders Meiji-era Japan with a reversed-edge sword, trying to protect people without returning to the violence that made him famous.",
+      "source": {
+        "caption": null,
+        "url": "https://www.simonandschuster.com/books/Rurouni-Kenshin-(3-in-1-Edition)-Vol-1/Nobuhiro-Watsuki/Rurouni-Kenshin-(3-in-1-Edition)/9781421592459",
+        "imageUrl": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781421592459/rurouni-kenshin-3-in-1-edition-vol-1-9781421592459_hr.jpg",
+        "tags": []
+      },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781421592459",
+      "anilist": {
+        "id": 30022,
+        "url": "https://anilist.co/manga/30022",
+        "score": 82,
+        "status": "FINISHED",
+        "format": "MANGA",
+        "volumes": 28,
+        "chapters": 259,
+        "coverImage": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781421592459/rurouni-kenshin-3-in-1-edition-vol-1-9781421592459_hr.jpg"
+      },
+      "genres": [
+        "Action",
+        "Adventure",
+        "Romance"
+      ],
+      "matchConfidence": "manual"
+    },
+    {
+      "id": "ranma 1 2",
+      "lookupTitle": "Ranma 1/2",
+      "title": "Ranma 1/2",
+      "description": "Ranma Saotome is a martial artist with a curse: cold water turns him into a girl, hot water turns him back, and an arranged engagement pulls him into nonstop fights, crushes, and slapstick chaos.",
+      "source": {
+        "caption": null,
+        "url": "https://www.simonandschuster.com/books/Ranma-1-2-(2-in-1-Edition)-Vol-1/Rumiko-Takahashi/Ranma-1-2-(2-in-1-Edition)/9781421565941",
+        "imageUrl": "https://d28hgpri8am2if.cloudfront.net/tagged_assets/cvr9781421565941/ranma-1-2-%282-in-1-edition%29-vol-1-9781421565941_hr.jpg",
+        "tags": []
+      },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781421565941",
+      "anilist": {
+        "id": 30023,
+        "url": "https://anilist.co/manga/30023",
+        "score": 78,
+        "status": "FINISHED",
+        "format": "MANGA",
+        "volumes": 38,
+        "chapters": 407,
+        "coverImage": "https://d28hgpri8am2if.cloudfront.net/tagged_assets/cvr9781421565941/ranma-1-2-%282-in-1-edition%29-vol-1-9781421565941_hr.jpg"
+      },
+      "genres": [
+        "Action",
+        "Comedy",
+        "Ecchi",
+        "Romance"
+      ],
+      "matchConfidence": "manual"
+    },
+    {
+      "id": "fullmetal alchemist",
+      "lookupTitle": "Fullmetal Alchemist",
+      "title": "Fullmetal Alchemist",
+      "description": "After a forbidden alchemical ritual destroys their bodies, Edward and Alphonse Elric search for the Philosopher's Stone in a story about sacrifice, war, science, and the cost of trying to bring back what was lost.",
+      "source": {
+        "caption": null,
+        "url": "https://www.simonandschuster.com/books/Fullmetal-Alchemist-Fullmetal-Edition-Vol-1/Hiromu-Arakawa/Fullmetal-Alchemist-Fullmetal-Edition/9781421599779",
+        "imageUrl": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781421599779/fullmetal-alchemist-fullmetal-edition-vol-1-9781421599779_hr.jpg",
+        "tags": []
+      },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781421599779",
+      "anilist": {
+        "id": 30025,
+        "url": "https://anilist.co/manga/30025",
+        "score": 89,
+        "status": "FINISHED",
+        "format": "MANGA",
+        "volumes": 27,
+        "chapters": 116,
+        "coverImage": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781421599779/fullmetal-alchemist-fullmetal-edition-vol-1-9781421599779_hr.jpg"
+      },
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Drama"
+      ],
+      "matchConfidence": "manual"
+    },
+    {
+      "id": "death note",
+      "lookupTitle": "Death Note",
+      "title": "Death Note",
+      "description": "Light Yagami finds a notebook that can kill anyone whose name is written inside. What starts as a private judgment fantasy turns into a tense battle of strategy between Light and the detective trying to stop him.",
+      "source": {
+        "caption": null,
+        "url": "https://www.simonandschuster.com/books/Death-Note-Vol-1/Tsugumi-Ohba/Death-Note/9781421501680",
+        "imageUrl": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781421501680/death-note-vol-1-9781421501680_hr.jpg",
+        "tags": []
+      },
+      "bookshopUrl": "https://bookshop.org/a/122519/9781421501680",
+      "anilist": {
+        "id": 30021,
+        "url": "https://anilist.co/manga/30021",
+        "score": 84,
+        "status": "FINISHED",
+        "format": "MANGA",
+        "volumes": 12,
+        "chapters": 108,
+        "coverImage": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781421501680/death-note-vol-1-9781421501680_hr.jpg"
+      },
+      "genres": [
+        "Mystery",
+        "Psychological",
+        "Supernatural",
+        "Thriller"
+      ],
+      "matchConfidence": "manual"
     }
   ]
 }
