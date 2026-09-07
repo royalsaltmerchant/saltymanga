@@ -56,6 +56,16 @@ const alphabet = Array.from(new Set(sortedItems.map((item) => getInitialLetter(i
           </div>
 
           <p class="empty-state" data-filter-empty hidden>No matches yet. Try a different title or letter.</p>
+
+          <aside class="shelf-disclosure" aria-labelledby="shelf-disclosure-title">
+            <h2 id="shelf-disclosure-title">About the links</h2>
+            <p>
+              Bookshop buttons use affiliate links, which means purchases may support this shelf at no extra cost to you.
+            </p>
+            <p>
+              Title details come from a mix of publisher pages, AniList metadata, and manual notes added while curating the list.
+            </p>
+          </aside>
         </>
       ) : (
         <p class="empty-state">No manga cards yet.</p>
