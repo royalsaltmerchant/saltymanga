@@ -142,6 +142,7 @@ img {
 
 .hero-intro,
 .manga-card-description,
+.manga-card-review p,
 .manga-card-meta,
 .manga-card-genres {
   color: var(--muted);
@@ -444,9 +445,20 @@ main {
   overflow: hidden;
 }
 
+.manga-card-header h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.manga-card-header h2 a:hover {
+  color: var(--accent-deep);
+}
+
 .manga-card-kicker,
 .manga-card-meta,
 .manga-card-description,
+.manga-card-review,
+.manga-card-review p,
 .manga-card-genres {
   margin: 0;
 }
@@ -509,6 +521,27 @@ main {
   color: var(--accent);
 }
 
+.manga-card-review {
+  display: grid;
+  gap: 0.4rem;
+  padding: 0.85rem 0.9rem;
+  border-left: 3px solid rgba(124, 202, 200, 0.68);
+  border-radius: 0.8rem;
+  background: rgba(124, 202, 200, 0.08);
+}
+
+.manga-card-review p {
+  font-size: 0.94rem;
+}
+
+.manga-card-review footer {
+  color: var(--accent-deep);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
 .manga-card-genres span {
   display: block;
   margin-bottom: 0.2rem;
@@ -535,6 +568,10 @@ main {
 
 .manga-card-actions a:hover {
   color: var(--accent);
+}
+
+.review-link {
+  align-self: center;
 }
 
 .buy-link {
@@ -587,6 +624,146 @@ code {
   color: var(--muted);
   font-size: 0.9rem;
   line-height: 1.7;
+}
+
+.title-page-shell {
+  position: relative;
+  z-index: 1;
+  width: min(86rem, calc(100% - 2.4rem));
+  margin: 0 auto;
+  padding: clamp(1.2rem, 3vw, 2.4rem) 0 4rem;
+}
+
+.back-link {
+  display: inline-flex;
+  margin-bottom: clamp(1.1rem, 2vw, 1.6rem);
+  color: var(--accent-deep);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+.title-detail {
+  display: grid;
+  grid-template-columns: minmax(15rem, 24rem) minmax(0, 1fr);
+  gap: clamp(1.4rem, 4vw, 4rem);
+  align-items: start;
+  padding: clamp(1rem, 2.2vw, 1.6rem);
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 0.3rem);
+  background:
+    linear-gradient(180deg, rgba(248, 251, 253, 0.05), transparent 18%),
+    var(--paper);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+}
+
+.title-detail-media {
+  position: sticky;
+  top: 1.2rem;
+}
+
+.title-detail-media img {
+  width: 100%;
+  border-radius: 1.1rem;
+  box-shadow: 0 24px 52px rgba(0, 0, 0, 0.32);
+}
+
+.title-detail-copy {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.35rem);
+  padding: clamp(0.4rem, 1vw, 0.8rem) 0;
+}
+
+.title-detail-kicker,
+.title-detail-meta,
+.title-detail-genres,
+.title-review h2,
+.title-premise h2 {
+  margin: 0;
+}
+
+.title-detail-kicker,
+.title-review h2,
+.title-premise h2,
+.title-detail-genres span {
+  color: var(--accent-deep);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.title-detail-copy h1 {
+  max-width: 13ch;
+  margin: 0;
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.7rem, 7vw, 6.4rem);
+  line-height: 0.9;
+  text-wrap: balance;
+}
+
+.title-detail-meta,
+.title-detail-genres,
+.title-review p,
+.title-premise p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.title-review,
+.title-premise {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.title-review {
+  max-width: 58rem;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  border-left: 3px solid rgba(124, 202, 200, 0.72);
+  border-radius: 0.95rem;
+  background: rgba(124, 202, 200, 0.08);
+}
+
+.title-review p {
+  color: var(--accent);
+  font-size: clamp(1.02rem, 1.4vw, 1.18rem);
+}
+
+.title-premise {
+  max-width: 54rem;
+  padding-top: 0.2rem;
+}
+
+.title-detail-genres span {
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.title-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
+  margin-top: 0.2rem;
+}
+
+.title-detail-actions a:not(.buy-link) {
+  color: var(--accent-deep);
+  font-size: 0.86rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.title-detail-actions a:not(.buy-link):hover {
+  color: var(--accent);
 }
 
 .site-watermark {
@@ -671,6 +848,15 @@ code {
   .hero-covers {
     min-height: 31rem;
   }
+
+  .title-detail {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .title-detail-media {
+    position: static;
+    width: min(22rem, 100%);
+  }
 }
 
 @media (max-width: 720px) {
@@ -728,6 +914,18 @@ code {
   .page-shell {
     width: calc(100% - 1rem);
     margin-top: -1.6rem;
+  }
+
+  .title-page-shell {
+    width: calc(100% - 1rem);
+  }
+
+  .title-detail {
+    padding: 0.85rem;
+  }
+
+  .title-detail-copy h1 {
+    font-size: clamp(2.2rem, 14vw, 3.6rem);
   }
 
   .shelf-toolbar {

@@ -3,5 +3,5 @@ export const siteConfig = {
   siteUrl: 'https://saltymanga.com',
   instagramHandle: 'salty.manga',
   instagramUrl: 'https://www.instagram.com/salty.manga/',
-  description: 'Curated manga worth its salt.'
+  description: 'Personal manga reviews, shelf notes, and recommendations worth their salt.'
 } as const;

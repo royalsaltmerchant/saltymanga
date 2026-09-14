@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCatalog, type CatalogItem } from '../../data/catalog';
+import { getMangaPath, getMangaSlug } from '../../data/urls';
+import { siteConfig } from '../../data/site';
+
+export function getStaticPaths() {
+  const catalog = getCatalog();
+
+  return catalog.items.map((item) => ({
+    params: {
+      slug: getMangaSlug(item)
+    },
+    props: {
+      item
+    }
+  }));
+}
+
+interface Props {
+  item: CatalogItem;
+}
+
+const { item } = Astro.props;
+const imageUrl = item.source.imageUrl ?? item.anilist?.coverImage ?? null;
+const pageTitle = `${item.title} review | ${siteConfig.name}`;
+const metaDescription = item.review
+  ? item.review.slice(0, 154).replace(/\s+\S*$/, '') + '...'
+  : `A personal manga review of ${item.title} on ${siteConfig.name}.`;
+const detailBits = [
+  item.anilist?.status,
+  item.anilist?.volumes ? `${item.anilist.volumes} volumes` : null,
+  item.anilist?.chapters ? `${item.anilist.chapters} chapters` : null
+].filter(Boolean);
+---
+
+<BaseLayout title={pageTitle} description={metaDescription} image={imageUrl}>
+  <main class="title-page-shell">
+    <a class="back-link" href="/#shelf">Back to the shelf</a>
+
+    <article class="title-detail">
+      <div class="title-detail-media">
+        {imageUrl && <img src={imageUrl} alt={`Cover for ${item.title}`} loading="eager" />}
+      </div>
+
+      <div class="title-detail-copy">
+        <p class="title-detail-kicker">Julian's manga review</p>
+        <h1>{item.title}</h1>
+        {detailBits.length > 0 && <p class="title-detail-meta">{detailBits.join(' · ')}</p>}
+
+        {item.review && (
+          <section class="title-review" aria-labelledby="title-review-heading">
+            <h2 id="title-review-heading">Julian's take</h2>
+            <p>{item.review}</p>
+          </section>
+        )}
+
+        <section class="title-premise" aria-labelledby="title-premise-heading">
+          <h2 id="title-premise-heading">Premise</h2>
+          <p>{item.description}</p>
+        </section>
+
+        {item.genres.length > 0 && (
+          <p class="title-detail-genres">
+            <span>Genres</span>
+            {item.genres.join(' · ')}
+          </p>
+        )}
+
+        <div class="title-detail-actions">
+          <a href="/">Browse all manga</a>
+          {item.bookshopUrl && (
+            <a class="buy-link" href={item.bookshopUrl} rel="noopener noreferrer" target="_blank">
+              Buy on Bookshop
+            </a>
+          )}
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-watermark">
+    Creator / contact:
+    <a href="https://julianranieri.com" rel="noopener noreferrer" target="_blank">
+      julianranieri.com
+    </a>
+  </footer>
+</BaseLayout>

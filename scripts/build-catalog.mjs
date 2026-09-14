@@ -269,6 +269,12 @@ async function main() {
         cleanText(stripHtml(anilist?.description)) ||
         cleanText(fallbackItem?.description) ||
         `${displayTitle} matched from the source CSV.`,
+      review:
+        cleanText(row.review) ||
+        cleanText(row.personal_note) ||
+        cleanText(row.personal_notes) ||
+        cleanText(fallbackItem?.review) ||
+        null,
       source: {
         caption: cleanText(row.caption) || cleanText(fallbackItem?.source?.caption) || null,
         url: sourceUrl,

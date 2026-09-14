@@ -6,7 +6,7 @@ SaltyManga is a one-page Astro site that turns a simple CSV of manga titles into
 
 - reads a minimal CSV of manga titles
 - enriches each title with AniList metadata
-- uses manual Bookshop links from the CSV when you have them
+- uses manual Bookshop links and personal review blurbs from the CSV when you have them
 - renders a static single-page shelf for Netlify
 
 ## Project Layout
@@ -19,6 +19,10 @@ SaltyManga is a one-page Astro site that turns a simple CSV of manga titles into
   Reads `titles.csv`, matches titles to AniList, and writes the catalog.
 - `src/pages/index.astro`
   Single-page frontend.
+- `src/pages/manga/[slug].astro`
+  Static detail pages for each manga, generated from `data/catalog.json`.
+- `src/pages/sitemap.xml.ts`
+  Sitemap endpoint listing the homepage and all manga detail pages.
 
 ## Quick Start
 
@@ -73,9 +77,11 @@ Yotsuba&!
 Optional columns supported by the builder:
 
 ```csv
-title,source_url,caption,notes,bookshop_url,cover_image
-Delicious in Dungeon,https://example.com/post,Still one of the easiest fantasy recs to hand someone.,,https://bookshop.org/a/123/9780123456789,https://example.com/cover.jpg
+title,source_url,caption,notes,bookshop_url,cover_image,review
+Delicious in Dungeon,https://example.com/post,,A premise override if needed,https://bookshop.org/a/123/9780123456789,https://example.com/cover.jpg,Still one of the easiest fantasy recs to hand someone.
 ```
+
+Use `notes` when you want to override the premise copy. Use `review` for your own opinionated blurb; it renders separately as “Julian's take.”
 
 Replace the CSV rows with your real titles, run the refresh flow, and the site will rebuild from that list.
 

@@ -6,6 +6,7 @@ export interface CatalogItem {
   lookupTitle: string | null;
   title: string;
   description: string;
+  review: string | null;
   source: {
     caption: string | null;
     url: string | null;

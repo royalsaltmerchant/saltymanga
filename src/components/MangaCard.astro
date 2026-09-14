@@ -1,5 +1,6 @@
 ---
 import type { CatalogItem } from '../data/catalog';
+import { getMangaPath } from '../data/urls';
 
 interface Props {
   item: CatalogItem;
@@ -18,10 +19,11 @@ function normalizeText(value: string) {
 }
 
 const imageUrl = item.source.imageUrl ?? item.anilist?.coverImage ?? null;
+const mangaPath = getMangaPath(item);
 const tags = item.source.tags.slice(0, 4);
-const hasActions = Boolean(item.bookshopUrl);
+const hasActions = Boolean(item.bookshopUrl || item.review);
 const searchIndex = normalizeText(
-  [item.title, item.lookupTitle, ...item.genres, ...item.source.tags, item.anilist?.status]
+  [item.title, item.lookupTitle, item.review, ...item.genres, ...item.source.tags, item.anilist?.status]
     .filter(Boolean)
     .join(' ')
 );
@@ -39,7 +41,7 @@ const detailBits = [
   <div class="manga-card-copy">
     <div class="manga-card-header">
       <p class="manga-card-kicker">{item.lookupTitle ?? 'CSV match'}</p>
-      <h2>{item.title}</h2>
+      <h2><a href={mangaPath}>{item.title}</a></h2>
       {detailBits.length > 0 && <p class="manga-card-meta">{detailBits.join(' · ')}</p>}
     </div>
 
@@ -49,6 +51,13 @@ const detailBits = [
         Read more
       </button>
     </div>
+
+    {item.review && (
+      <blockquote class="manga-card-review">
+        <p>{item.review}</p>
+        <footer>Julian's take</footer>
+      </blockquote>
+    )}
 
     {tags.length > 0 && (
       <ul class="manga-card-tags" aria-label={`${item.title} tags`}>
@@ -65,6 +74,11 @@ const detailBits = [
 
     {hasActions && (
       <div class="manga-card-actions">
+        {item.review && (
+          <a class="review-link" href={mangaPath}>
+            Read the full take
+          </a>
+        )}
         {item.bookshopUrl && (
           <a class="buy-link" href={item.bookshopUrl} rel="noopener noreferrer" target="_blank">
             Buy on Bookshop

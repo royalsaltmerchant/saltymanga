@@ -5,9 +5,11 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  image?: string | null;
 }
 
-const { title = siteConfig.name, description = siteConfig.description } = Astro.props;
+const { title = siteConfig.name, description = siteConfig.description, image = null } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? siteConfig.siteUrl).toString();
 ---
 
 <!doctype html>
@@ -17,10 +19,12 @@ const { title = siteConfig.name, description = siteConfig.description } = Astro.
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.site?.toString() ?? siteConfig.siteUrl} />
+    <meta property="og:url" content={canonicalUrl} />
+    {image && <meta property="og:image" content={image} />}
     <meta name="twitter:card" content="summary_large_image" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6GD28CJJ1W"></script>
     <script is:inline>
