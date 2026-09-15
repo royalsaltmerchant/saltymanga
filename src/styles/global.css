@@ -166,10 +166,16 @@ img {
   line-height: 1.75;
 }
 
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.75rem;
+}
+
 .hero-link {
   display: inline-grid;
   gap: 0.18rem;
-  margin-top: 1.75rem;
   width: fit-content;
   padding: 0.85rem 1rem 0.9rem;
   border: 1px solid rgba(248, 251, 253, 0.12);
@@ -195,6 +201,15 @@ img {
 .hero-link strong {
   font-size: 0.98rem;
   font-weight: 800;
+}
+
+.hero-link--guide {
+  border-color: rgba(124, 202, 200, 0.28);
+  background: linear-gradient(180deg, rgba(26, 55, 63, 0.9), rgba(10, 18, 23, 0.72));
+}
+
+.hero-link--guide span {
+  color: #9fd8d6;
 }
 
 .hero-stage {

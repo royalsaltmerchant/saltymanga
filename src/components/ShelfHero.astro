@@ -41,10 +41,16 @@ const heroParticles = [
       <h1>{siteConfig.name}</h1>
       <p class="hero-intro">{siteConfig.description}</p>
       <p class="hero-note">A personal shelf of manga I recommend, from recent reads to longtime classics. Each title includes my own take, not just publisher premise copy.</p>
-      <a class="hero-link" href={siteConfig.instagramUrl} rel="noopener noreferrer" target="_blank">
-        <span>Did you find me on Instagram?</span>
-        <strong>@{siteConfig.instagramHandle}</strong>
-      </a>
+      <div class="hero-actions">
+        <a class="hero-link" href={siteConfig.instagramUrl} rel="noopener noreferrer" target="_blank">
+          <span>Did you find me on Instagram?</span>
+          <strong>@{siteConfig.instagramHandle}</strong>
+        </a>
+        <a class="hero-link hero-link--guide" href="https://yprecs.saltymanga.com/" rel="noopener noreferrer">
+          <span>Want a guided shelf?</span>
+          <strong>Yen Press manga recommendations</strong>
+        </a>
+      </div>
     </div>
 
     <div class="hero-stage">
