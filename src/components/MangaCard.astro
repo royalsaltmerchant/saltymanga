@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import type { CatalogItem } from '../data/catalog';
+import { canOptimizeImage } from '../data/images';
 import { getMangaPath } from '../data/urls';
 
 interface Props {
@@ -18,10 +20,20 @@ function normalizeText(value: string) {
     .trim();
 }
 
+function getReviewPreview(value: string, maxLength = 210) {
+  if (value.length <= maxLength) {
+    return value;
+  }
+
+  const trimmed = value.slice(0, maxLength).replace(/\s+\S*$/, '');
+  return `${trimmed}...`;
+}
+
 const imageUrl = item.source.imageUrl ?? item.anilist?.coverImage ?? null;
 const mangaPath = getMangaPath(item);
 const tags = item.source.tags.slice(0, 4);
 const hasActions = Boolean(item.bookshopUrl || item.review);
+const reviewPreview = item.review ? getReviewPreview(item.review) : null;
 const searchIndex = normalizeText(
   [item.title, item.lookupTitle, item.review, ...item.genres, ...item.source.tags, item.anilist?.status]
     .filter(Boolean)
@@ -36,7 +48,30 @@ const detailBits = [
 ---
 
 <article class="manga-card" data-genres={item.genres.join('|')} data-search={searchIndex} data-initial={initialLetter}>
-  {imageUrl && <img class="manga-card-cover" src={imageUrl} alt={`Cover for ${item.title}`} loading="lazy" />}
+  {imageUrl && canOptimizeImage(imageUrl) && (
+    <Image
+      class="manga-card-cover"
+      src={imageUrl}
+      alt={`Cover for ${item.title}`}
+      inferSize
+      widths={[208, 416, 720]}
+      sizes="(min-width: 760px) 13rem, 100vw"
+      format="webp"
+      loading="lazy"
+      decoding="async"
+    />
+  )}
+  {imageUrl && !canOptimizeImage(imageUrl) && (
+    <img
+      class="manga-card-cover"
+      src={imageUrl}
+      alt={`Cover for ${item.title}`}
+      width="600"
+      height="900"
+      loading="lazy"
+      decoding="async"
+    />
+  )}
 
   <div class="manga-card-copy">
     <div class="manga-card-header">
@@ -52,11 +87,11 @@ const detailBits = [
       </button>
     </div>
 
-    {item.review && (
-      <blockquote class="manga-card-review">
-        <p>{item.review}</p>
-        <footer>Julian's take</footer>
-      </blockquote>
+    {reviewPreview && (
+      <aside class="manga-card-review" aria-label={`Julian's take on ${item.title}`}>
+        <p class="manga-card-review-label">Julian's take</p>
+        <p>{reviewPreview}</p>
+      </aside>
     )}
 
     {tags.length > 0 && (

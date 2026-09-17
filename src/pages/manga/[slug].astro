@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCatalog, type CatalogItem } from '../../data/catalog';
+import { canOptimizeImage } from '../../data/images';
 import { getMangaPath, getMangaSlug } from '../../data/urls';
 import { siteConfig } from '../../data/site';
 
@@ -40,7 +42,30 @@ const detailBits = [
 
     <article class="title-detail">
       <div class="title-detail-media">
-        {imageUrl && <img src={imageUrl} alt={`Cover for ${item.title}`} loading="eager" />}
+        {imageUrl && canOptimizeImage(imageUrl) && (
+          <Image
+            src={imageUrl}
+            alt={`Cover for ${item.title}`}
+            inferSize
+            widths={[208, 416, 720]}
+            sizes="(max-width: 720px) 100vw, 24rem"
+            format="webp"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+        )}
+        {imageUrl && !canOptimizeImage(imageUrl) && (
+          <img
+            src={imageUrl}
+            alt={`Cover for ${item.title}`}
+            width="600"
+            height="900"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+        )}
       </div>
 
       <div class="title-detail-copy">

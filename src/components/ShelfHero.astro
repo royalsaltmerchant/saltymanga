@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import type { CatalogItem } from '../data/catalog';
+import { canOptimizeImage } from '../data/images';
 import { siteConfig } from '../data/site';
 
 interface Props {
@@ -63,14 +65,38 @@ const heroParticles = [
       </div>
 
       <div class="hero-covers" aria-hidden="true">
-        {coverItems.map((item, index) => (
-          <img
-            class:list={['hero-cover', `hero-cover--${index + 1}`]}
-            src={item.source.imageUrl ?? item.anilist?.coverImage ?? undefined}
-            alt=""
-            loading="eager"
-          />
-        ))}
+        {coverItems.map((item, index) => {
+          const imageUrl = item.source.imageUrl ?? item.anilist?.coverImage;
+          const imageClass = `hero-cover hero-cover--${index + 1}`;
+
+          if (!imageUrl) return null;
+
+          return canOptimizeImage(imageUrl) ? (
+            <Image
+              class={imageClass}
+              src={imageUrl}
+              alt=""
+              inferSize
+              widths={[208, 416, 720]}
+              sizes="(max-width: 680px) 42vw, 15.5rem"
+              format="webp"
+              loading={index === 0 ? 'eager' : 'lazy'}
+              fetchpriority={index === 0 ? 'high' : 'auto'}
+              decoding="async"
+            />
+          ) : (
+            <img
+              class={imageClass}
+              src={imageUrl}
+              alt=""
+              width="600"
+              height="900"
+              loading={index === 0 ? 'eager' : 'lazy'}
+              fetchpriority={index === 0 ? 'high' : 'auto'}
+              decoding="async"
+            />
+          );
+        })}
       </div>
     </div>
   </div>

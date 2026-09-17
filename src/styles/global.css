@@ -288,6 +288,7 @@ img {
 .hero-cover {
   position: absolute;
   width: min(15.5rem, 52vw);
+  height: auto;
   border: 1px solid rgba(248, 251, 253, 0.16);
   border-radius: 1.8rem;
   box-shadow: 0 28px 64px rgba(0, 0, 0, 0.4);
@@ -439,6 +440,7 @@ main {
 
 .manga-card-cover {
   width: 100%;
+  height: 100%;
   aspect-ratio: 4 / 4.5;
   object-fit: cover;
 }
@@ -538,23 +540,32 @@ main {
 
 .manga-card-review {
   display: grid;
-  gap: 0.4rem;
-  padding: 0.85rem 0.9rem;
-  border-left: 3px solid rgba(124, 202, 200, 0.68);
-  border-radius: 0.8rem;
-  background: rgba(124, 202, 200, 0.08);
+  gap: 0.35rem;
+  padding: 0.75rem 0.8rem;
+  border-left: 2px solid rgba(124, 202, 200, 0.68);
+  border-radius: 0.7rem;
+  background: rgba(124, 202, 200, 0.07);
 }
 
 .manga-card-review p {
-  font-size: 0.94rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
-.manga-card-review footer {
+.manga-card-review .manga-card-review-label {
+  display: block;
+  overflow: visible;
   color: var(--accent-deep);
   font-size: 0.76rem;
   font-weight: 800;
+  line-height: 1.2;
   letter-spacing: 0.09em;
   text-transform: uppercase;
+  -webkit-line-clamp: unset;
 }
 
 .manga-card-genres span {
@@ -595,6 +606,42 @@ main {
   background: linear-gradient(180deg, #f6fbfd 0%, #d7e9ee 100%);
   color: #101215 !important;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22), 0 10px 18px rgba(0, 0, 0, 0.14);
+}
+
+@media (min-width: 760px) {
+  .manga-grid {
+    grid-template-columns: repeat(auto-fit, minmax(31rem, 1fr));
+  }
+
+  .manga-card {
+    grid-template-columns: minmax(11.5rem, 13rem) minmax(0, 1fr);
+    grid-template-rows: none;
+  }
+
+  .manga-card-cover {
+    height: 100%;
+    min-height: 100%;
+  }
+
+  .manga-card-cover {
+    aspect-ratio: auto;
+    object-position: center top;
+  }
+
+  .manga-card-copy {
+    align-content: start;
+    gap: 0.65rem;
+    padding: 0.9rem 0.95rem;
+  }
+
+  .manga-card-description {
+    -webkit-line-clamp: 3;
+    min-height: 0;
+  }
+
+  .manga-card-review p {
+    -webkit-line-clamp: 3;
+  }
 }
 
 code {
@@ -686,6 +733,7 @@ code {
 
 .title-detail-media img {
   width: 100%;
+  height: auto;
   border-radius: 1.1rem;
   box-shadow: 0 24px 52px rgba(0, 0, 0, 0.32);
 }
